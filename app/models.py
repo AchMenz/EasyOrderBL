@@ -2,7 +2,7 @@
 
 from flask.ext.appbuilder import Model
 from flask.ext.appbuilder.models.mixins import AuditMixin, FileColumn, ImageColumn
-from sqlalchemy import Column, Integer, String, ForeignKey, Unicode, Float, DateTime, Text
+from sqlalchemy import Column, Integer, String, ForeignKey, Unicode, Float, Date, Time, Text
 from sqlalchemy.orm import relationship
 """
 
@@ -14,63 +14,58 @@ AuditMixin will add automatic timestamp of created and modified by who
 """
         
 # Table of all Suppliers
-class Supplier(Model, AuditMixin):
-    __tablename__ = 'supplier'
+class table_supplier(Model, AuditMixin):
     id = Column(Integer, primary_key=True)
     client = Column(String(255),nullable=False)
     address = Column(Text)
     telephone = Column(String(255))
     email =  Column(Unicode(255), nullable=False, server_default=u'', unique=True)
+    emailText = Column(Text, nullable=False)
     comment = Column(Text)
 
 # Table of all Orders
 # reference to Supplier
-class AllOrders(Model, AuditMixin):
-    __tablename__='allOrders'
+class table_orders(Model, AuditMixin):
     id = Column(Integer, primary_key=True)
-    supplierId = Column(Integer,ForeignKey('supplier.id'))
-    supplier = relationship('Supplier')
-    target_date = Column(DateTime)
-    target_time = Column(DateTime)
+    supplierId = Column(Integer,ForeignKey('table_supplier.id'))
+    supplier = relationship('table_supplier')
+    target_date = Column(Date, nullable=False)
+    target_time = Column(String(255))
     total_number = Column(Integer)
     total_price = Column(Float)
     comment = Column(Text)
 
 # Table of one Order
 # reference to all Orders
-class OneOrder(Model, AuditMixin):
-    __tablename__='oneOrder'
+class table_orderline(Model, AuditMixin):
     id = Column(Integer, primary_key=True)
-    orderId = Column(Integer,ForeignKey('allOrders.id')) 
-    order = relationship('AllOrders')
-    category = Column(String(255))
-    product = Column(String(255))
+    orderId = Column(Integer,ForeignKey('table_orders.id')) 
+    order = relationship('table_orders')
+    category = Column(String(255), nullable=False)
+    product = Column(String(255), nullable=False)
     pricePerUnit = Column(Float)
-    number = Column(Float)
+    number = Column(Float, nullable=False)
     price = Column(Float) 
     comment = Column(Text)
 
 # Table for the categories.
-class Category(Model, AuditMixin):
-    __tablename__='category'
+class table_category(Model, AuditMixin):
     id = Column(Integer, primary_key=True)
-    name = Column(String(255))
+    name = Column(String(255), nullable=False)
 
 # Table for the products.
 # Reference to Category. 
-class Product(Model, AuditMixin):
-    __tablename__= 'product'
+class table_product(Model, AuditMixin):
     id = Column(Integer, primary_key=True)
-    name = Column(String(255))
-    categoryId = Column(Integer,ForeignKey('category.id')) 
-    category = relationship('Category')
+    name = Column(String(255), nullable=False)
+    categoryId = Column(Integer,ForeignKey('table_category.id')) 
+    category = relationship('table_category')
 
 # Table for the prices.
 # Reference to Product.
-class Price(Model, AuditMixin):
-    __tablename__='price'
+class table_price(Model, AuditMixin):
     id = Column(Integer, primary_key=True)
-    price = Column(Float)
-    date = Column(DateTime)
-    productId = Column(Integer,ForeignKey('product.id')) 
-    product = relationship('Product')
+    price = Column(Float, nullable=False)
+    date = Column(Date, nullable=False)
+    productId = Column(Integer,ForeignKey('table_product.id')) 
+    product = relationship('table_product')

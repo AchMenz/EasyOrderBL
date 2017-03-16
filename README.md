@@ -6,14 +6,10 @@
     virtualenv .
     . bin/activate
     pip3 install flask-appbuilder
-
-    fabmanager create-app
     
-    Your new app name: UniversalOrderProgramFlaskAB
-    Your engine type, SQLAlchemy or MongoEngine [SQLAlchemy]:
-    Downloaded the skeleton app, good coding!
+    git clone https://github.com/AchimMenzel/UniversalOrderProgramFlaskAB.git
     
-    cd UniBestFlaskAB
+    cd UniversalOrderProgramFlaskAB
     fabmanager create-admin
     
     Username [admin]: admin
@@ -22,9 +18,7 @@
     Email [admin@fab.org]: test@mail.com
     Password: password
     Repeat for confirmation: password
-    
-    
-    
+       
 ## Run
 
     fabmanager run

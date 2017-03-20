@@ -75,7 +75,7 @@ class table_price(Model, AuditMixin):
 
     #gibt eine Bezeichnung aus, unter der der Datensatz angezeigt wird
     def __repr__(self):
-        return self.price
+        return str(self.price)
 
 # Table of one Order
 # reference to all Orders

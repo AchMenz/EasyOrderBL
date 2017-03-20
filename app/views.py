@@ -55,7 +55,9 @@ class PriceNoAdmin(ModelView):
     list_title = "PriceAdmin"
     #how many entries are shown on one page
     page_size = 10
-    #base order in the beginning
+    #columns not editable
+    base_permissions = ['can_list']
+
 
 class ProductAdmin(ModelView):
     #base table
@@ -125,6 +127,30 @@ class CategoryAdmin(ModelView):
     add_title = 'Category Add'
     #title of editform
     edit_title = 'Category Edit'
+
+class CategoryNoAdmin(ModelView):
+    #base table
+    datamodel = SQLAInterface(table_category)
+    #the related view (subtable that is in relation)
+    related_views = [ProductAdmin]
+    #columns shown in listview
+    list_columns = ['id', 'name']
+    #how the list is ordered
+    order_columns = ['id', 'name']
+    #columns in the addform
+    add_columns = ['name']
+    #columns in the editform
+    edit_columns = ['name']
+    #columns in the showform
+    show_columns = ['id', 'name']
+    #title of showform
+    show_title = 'Category Details'
+    #title of addform
+    add_title = 'Category Add'
+    #title of editform
+    edit_title = 'Category Edit'
+    #columns not editable
+    base_permissions = ['can_list']
     
 class OrderlineAdmin(ModelView):
     #base table
@@ -145,6 +171,28 @@ class OrderlineAdmin(ModelView):
     add_title = 'Orderline Add'
     #title of editform
     edit_title = 'Orderline Edit'
+
+class OrderlineNoAdmin(ModelView):
+    #base table
+    datamodel = SQLAInterface(table_orderline)
+    #columns shown in listview
+    list_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'number', 'price', 'comment']
+    #how the list is ordered
+    order_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'number', 'price', 'comment']
+    #columns in the addform
+    add_columns = ['order', 'category', 'product', 'number', 'comment']
+    #columns in the editform
+    edit_columns = ['order', 'category', 'product', 'number', 'comment']
+    #columns in the showform
+    show_columns = ['id', 'order', 'category', 'product', 'pricePerUnit', 'number', 'price', 'comment']
+    #title of showform
+    show_title = 'Orderline Details'
+    #title of addform
+    add_title = 'Orderline Add'
+    #title of editform
+    edit_title = 'Orderline Edit'
+    #columns not editable
+    base_permissions = ['can_list']
    
 class OrdersAdmin(ModelView):
     #base table
@@ -174,6 +222,34 @@ class OrdersAdmin(ModelView):
     #base order in the beginning
 #    base_order = ('supplier.client', 'target_date')
 
+class OrdersNoAdmin(ModelView):
+    #base table
+    datamodel = SQLAInterface(table_orders)
+    #the related view (subtable that is in relation)
+    related_views = [OrderlineAdmin]
+    #columns shown in listview
+    list_columns = ['id', 'supplier.client', 'target_date', 'total_number', 'total_price']
+    #how the list is ordered
+    order_columns = ['supplier.client', 'target_date', 'target_time', 'id', 'total_number', 'total_price']
+    #columns in the addform
+    add_columns = ['supplier', 'target_date', 'target_time', 'comment']
+    #columns in the editform
+    edit_columns = ['supplier', 'target_date', 'target_time', 'comment']
+    #columns in the showform
+    show_columns = ['id', 'supplier.client', 'target_date', 'target_time', 'total_number', 'total_price', 'comment']
+    #title of showform
+    show_title = 'Orders Details'
+    #title of addform
+    add_title = 'Orders Add'
+    #title of editform
+    edit_title = 'Orders Edit'
+    #title of the list
+    list_title = "OrdersAdmin"
+    #how many entries are shown on one page
+    page_size = 10
+    #columns not editable
+    base_permissions = ['can_list']
+
 class SupplierAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_supplier)
@@ -196,6 +272,30 @@ class SupplierAdmin(ModelView):
     #title of editform
     edit_title = 'Supplier Edit'
 
+class SupplierNoAdmin(ModelView):
+    #base table
+    datamodel = SQLAInterface(table_supplier)
+    #the related view (subtable that is in relation)
+    related_views = [OrdersAdmin]
+    #columns shown in listview
+    list_columns = ['client', 'email']
+    #how the list is ordered
+    order_columns = ['client', 'email', 'id']
+    #columns in the addform
+    add_columns = ['client', 'address', 'telephone', 'email', 'emailText', 'comment']
+    #columns in the editform
+    edit_columns = ['client', 'address', 'telephone', 'email', 'emailText', 'comment']
+    #columns in the showform
+    show_columns = ['id', 'client', 'address', 'telephone', 'email', 'emailText', 'comment']
+    #title of showform
+    show_title = 'Supplier Details'
+    #title of addform
+    add_title = 'Supplier Add'
+    #title of editform
+    edit_title = 'Supplier Edit'
+    #columns not editable
+    base_permissions = ['can_list']
+
 db.create_all()
 
 
@@ -208,8 +308,12 @@ appbuilder.add_view(CategoryAdmin, "CategoryAdmin", category = "Products")
 appbuilder.add_view(ProductAdmin, "ProductAdmin", category = "Products")
 appbuilder.add_view(PriceAdmin, "PriceAdmin", category = "Products")
 
-appbuilder.add_view(PriceNoAdmin, "PriceNoAdmin", category = "Products")
+appbuilder.add_view(SupplierNoAdmin, "SupplierNoAdmin", category = "Orders")
+appbuilder.add_view(OrdersNoAdmin, "OrdersNoAdmin", category = "Orders")
+appbuilder.add_view(OrderlineNoAdmin, "OrderlineNoAdmin", category = "Orders")
+appbuilder.add_view(CategoryNoAdmin, "CategoryNoAdmin", category = "Products")
 appbuilder.add_view(ProductNoAdmin, "ProductNoAdmin", category = "Products")
+appbuilder.add_view(PriceNoAdmin, "PriceNoAdmin", category = "Products")
 
 @appbuilder.app.errorhandler(404)
 def page_not_found(e):

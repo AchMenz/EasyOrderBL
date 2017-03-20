@@ -26,3 +26,7 @@
 In der Datei "run.py" kann der Host und der Port angepasst werden.
     
     app.run(host='127.0.0.1', port=8080, debug=True)
+
+## Datenbank füllen
+
+    sqlite3 app.db < app/scratch/SqlInsert.sql

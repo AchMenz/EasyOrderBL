@@ -1,8 +1,10 @@
 from flask import render_template
 from flask.ext.appbuilder.models.sqla.interface import SQLAInterface
-from flask.ext.appbuilder import ModelView
+from flask.ext.appbuilder import ModelView, BaseView
 from app import appbuilder, db
 from .models import table_supplier, table_orders, table_orderline, table_category, table_product, table_price
+
+
 
 class PriceAdmin(ModelView):
     #base table
@@ -30,6 +32,31 @@ class PriceAdmin(ModelView):
     #base order in the beginning
 #    base_order = ('id', 'product.name', 'date', 'price')
 
+class PriceNoAdmin(ModelView):
+    #base table
+    datamodel = SQLAInterface(table_price)
+    #columns shown in listview
+    list_columns = ['id', 'product.name', 'date', 'price']
+    #how the list is ordered
+    order_columns = ['id', 'product.name', 'date', 'price']
+     #columns in the addform
+    add_columns = ['product', 'price', 'date']
+     #columns in the editform
+    edit_columns = ['product', 'price', 'date']
+     #columns in the showform
+    show_columns = ['id', 'product', 'date']
+    #title of showform
+    show_title = 'Price Details'
+    #title of addform
+    add_title = 'Price Add'
+    #title of editform
+    edit_title = 'Price Edit'
+    #title of the list
+    list_title = "PriceAdmin"
+    #how many entries are shown on one page
+    page_size = 10
+    #base order in the beginning
+
 class ProductAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_product)
@@ -51,6 +78,31 @@ class ProductAdmin(ModelView):
     add_title = 'Product Add'
     #title of editform
     edit_title = 'Product Edit'
+
+class ProductNoAdmin(ModelView):
+    #base table
+    datamodel = SQLAInterface(table_product)
+    #the related view (subtable that is in relation)
+    related_views = [PriceAdmin]
+    #columns shown in listview
+    list_columns = ['id', 'category.name', 'name']
+    #how the list is ordered
+    order_columns = ['id', 'category.name', 'name']
+    #columns in the addform
+    add_columns = ['category', 'name']
+    #columns in the editform
+    edit_columns = ['category', 'name']
+    #columns in the showform
+    show_columns = ['id', 'category', 'name']
+    #title of showform
+    show_title = 'Product Details'
+    #title of addform
+    add_title = 'Product Add'
+    #title of editform
+    edit_title = 'Product Edit'
+    #columns not editable
+    base_permissions = ['can_list']
+
 
 class CategoryAdmin(ModelView):
     #base table
@@ -146,6 +198,8 @@ class SupplierAdmin(ModelView):
 
 db.create_all()
 
+
+
 #register the views here
 appbuilder.add_view(SupplierAdmin, "SupplierAdmin", category = "Orders")
 appbuilder.add_view(OrdersAdmin, "OrdersAdmin", category = "Orders")
@@ -153,6 +207,9 @@ appbuilder.add_view(OrderlineAdmin, "OrderlineAdmin", category = "Orders")
 appbuilder.add_view(CategoryAdmin, "CategoryAdmin", category = "Products")
 appbuilder.add_view(ProductAdmin, "ProductAdmin", category = "Products")
 appbuilder.add_view(PriceAdmin, "PriceAdmin", category = "Products")
+
+appbuilder.add_view(PriceNoAdmin, "PriceNoAdmin", category = "Products")
+appbuilder.add_view(ProductNoAdmin, "ProductNoAdmin", category = "Products")
 
 @appbuilder.app.errorhandler(404)
 def page_not_found(e):

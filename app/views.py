@@ -30,7 +30,7 @@ class PriceAdmin(ModelView):
     #how many entries are shown on one page
     page_size = 10
     #base order in the beginning
-#    base_order = ('id', 'product.name', 'date', 'price')
+    #base_order = ('id', 'product.name', 'date', 'price')
 
 class PriceNoAdmin(ModelView):
     #base table
@@ -220,7 +220,7 @@ class OrdersAdmin(ModelView):
     #how many entries are shown on one page
     page_size = 10
     #base order in the beginning
-#    base_order = ('supplier.client', 'target_date')
+    #base_order = ('supplier.client', 'target_date')
 
 class OrdersNoAdmin(ModelView):
     #base table

@@ -34,9 +34,9 @@ class PriceAdmin(ModelView):
     #base order in the beginning
     #base_order = ('id', 'product.name', 'date', 'price')
 
-class PriceNoAdmin(PriceAdmin):
-    #columns not editable
-    base_permissions = ['can_list']
+# class PriceNoAdmin(PriceAdmin):
+#     #columns not editable
+#     base_permissions = ['can_list']
 
 
 class ProductAdmin(ModelView):
@@ -61,9 +61,9 @@ class ProductAdmin(ModelView):
     #title of editform
     edit_title = 'Product Edit'
 
-class ProductNoAdmin(ProductAdmin):
-    #columns not editable
-    base_permissions = ['can_list']
+# class ProductNoAdmin(ProductAdmin):
+#     #columns not editable
+#     base_permissions = ['can_list']
 
 
 class CategoryAdmin(ModelView):
@@ -88,9 +88,9 @@ class CategoryAdmin(ModelView):
     #title of editform
     edit_title = 'Category Edit'
 
-class CategoryNoAdmin(CategoryAdmin):
-    #columns not editable
-    base_permissions = ['can_list']
+# class CategoryNoAdmin(CategoryAdmin):
+#     #columns not editable
+#     base_permissions = ['can_list']
     
 class OrderlineAdmin(ModelView):
     #base table
@@ -127,9 +127,9 @@ class OrderlineAdmin(ModelView):
     #title of editform
     edit_title = 'Orderline Edit'
 
-class OrderlineNoAdmin(OrderlineAdmin):
-    #columns not editable
-    base_permissions = ['can_list']
+# class OrderlineNoAdmin(OrderlineAdmin):
+#     #columns not editable
+#     base_permissions = ['can_list']
    
 class OrdersAdmin(ModelView):
     #base table
@@ -159,9 +159,9 @@ class OrdersAdmin(ModelView):
     #base order in the beginning
     #base_order = ('supplier.client', 'target_date')
 
-class OrdersNoAdmin(OrdersAdmin):
-    #columns not editable
-    base_permissions = ['can_list']
+# class OrdersNoAdmin(OrdersAdmin):
+#     #columns not editable
+#     base_permissions = ['can_list']
 
 class SupplierAdmin(ModelView):
     #base table
@@ -185,9 +185,9 @@ class SupplierAdmin(ModelView):
     #title of editform
     edit_title = 'Supplier Edit'
 
-class SupplierNoAdmin(SupplierAdmin):
-    #columns not editable
-    base_permissions = ['can_list']
+# class SupplierNoAdmin(SupplierAdmin):
+#     #columns not editable
+#     base_permissions = ['can_list']
 
 
 db.create_all()
@@ -200,12 +200,12 @@ appbuilder.add_view(CategoryAdmin, "CategoryAdmin", category = "Products")
 appbuilder.add_view(ProductAdmin, "ProductAdmin", category = "Products")
 appbuilder.add_view(PriceAdmin, "PriceAdmin", category = "Products")
 
-appbuilder.add_view(SupplierNoAdmin, "SupplierNoAdmin", category = "Orders")
-appbuilder.add_view(OrdersNoAdmin, "OrdersNoAdmin", category = "Orders")
-appbuilder.add_view(OrderlineNoAdmin, "OrderlineNoAdmin", category = "Orders")
-appbuilder.add_view(CategoryNoAdmin, "CategoryNoAdmin", category = "Products")
-appbuilder.add_view(ProductNoAdmin, "ProductNoAdmin", category = "Products")
-appbuilder.add_view(PriceNoAdmin, "PriceNoAdmin", category = "Products")
+# appbuilder.add_view(SupplierNoAdmin, "SupplierNoAdmin", category = "Orders")
+# appbuilder.add_view(OrdersNoAdmin, "OrdersNoAdmin", category = "Orders")
+# appbuilder.add_view(OrderlineNoAdmin, "OrderlineNoAdmin", category = "Orders")
+# appbuilder.add_view(CategoryNoAdmin, "CategoryNoAdmin", category = "Products")
+# appbuilder.add_view(ProductNoAdmin, "ProductNoAdmin", category = "Products")
+# appbuilder.add_view(PriceNoAdmin, "PriceNoAdmin", category = "Products")
 
 @appbuilder.app.errorhandler(404)
 def page_not_found(e):

@@ -3,6 +3,7 @@ from flask import Flask
 from flask.ext.appbuilder import SQLA, AppBuilder
 from config import STATIC_DIR
 
+
 """
  Logging configuration
 """
@@ -11,6 +12,7 @@ logging.basicConfig(format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 logging.getLogger().setLevel(logging.DEBUG)
 
 app = Flask(__name__)
+
 app.config.from_object('config')
 db = SQLA(app)
 #"static_folder=STATIC_DIR" hinzugefuegt; Issue #1 geloest

@@ -4,6 +4,7 @@ from flask.ext.appbuilder import Model
 from flask.ext.appbuilder.models.mixins import AuditMixin, FileColumn, ImageColumn
 from sqlalchemy import Column, Integer, String, ForeignKey, Unicode, Float, Date, Time, Text
 from sqlalchemy.orm import relationship
+from flask import Markup, url_for
 """
 
 You can use the extra Flask-AppBuilder fields and Mixin's
@@ -26,6 +27,9 @@ class table_supplier(Model, AuditMixin):
     #gibt eine Bezeichnung aus, unter der der Datensatz angezeigt wird
     def __repr__(self):
         return self.client
+
+#    def click_row(self):
+#        return Markup('<a href="' + url_for('OrdersAdmin.show',pk=str(self.id)) + '">self.client</a>')
 
 # Table of all Orders
 # reference to Supplier

@@ -104,3 +104,12 @@ IMG_UPLOAD_URL = '/static/uploads/'
 #APP_THEME = "united.css"
 #APP_THEME = "yeti.css"
 APP_THEME = "lumen.css"
+
+MAIL_SERVER = 'mail.gmx.net'
+MAIL_PORT = 465
+#MAIL_USERNAME = 'richi.lightshadow@gmail.com'
+#MAIL_PASSWORD = '-QecaEu7'
+MAIL_USERNAME = 'richard.luedtke@gmx.de'
+MAIL_PASSWORD = '<zA6G4iEt9'
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True

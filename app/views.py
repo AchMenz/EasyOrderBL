@@ -3,7 +3,7 @@ from flask.ext.appbuilder.models.sqla.interface import SQLAInterface
 from flask.ext.appbuilder import ModelView, BaseView, expose
 from flask_appbuilder.fields import AJAXSelectField
 from flask_appbuilder.fieldwidgets import Select2AJAXWidget, Select2SlaveAJAXWidget
-from app import appbuilder, db
+from app import appbuilder, db, app
 from .models import table_supplier, table_orders, table_orderline, table_category, table_product, table_price
 from flask_mail import Message, Mail
 
@@ -37,11 +37,11 @@ class PriceAdmin(ModelView):
 
     @expose('/sendmail')
     def sendmail(self):
-        app = Flask(__name__)
+
         mail = Mail(app)
         msg = Message("Hello World",
                       sender="richard.luedtke@gmx.de",
-                      recipients=["richi.lightshadow@gmail.com"])
+                      recipients="richi.lightshadow@gmail.com")
         mail.send(msg)
         return 'Hello World!'
 

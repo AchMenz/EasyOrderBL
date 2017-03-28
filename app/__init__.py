@@ -2,6 +2,7 @@ import logging
 from flask import Flask
 from flask.ext.appbuilder import SQLA, AppBuilder
 from config import STATIC_DIR
+from flask_mail import Mail
 
 
 """
@@ -12,6 +13,7 @@ logging.basicConfig(format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 logging.getLogger().setLevel(logging.DEBUG)
 
 app = Flask(__name__)
+mail = Mail(app)
 
 app.config.from_object('config')
 db = SQLA(app)

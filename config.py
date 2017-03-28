@@ -105,11 +105,11 @@ IMG_UPLOAD_URL = '/static/uploads/'
 #APP_THEME = "yeti.css"
 APP_THEME = "lumen.css"
 
-MAIL_SERVER = 'smtp.trashmail.com'
-MAIL_PORT = 465
+MAIL_SERVER = 'smtp.web.de'
+MAIL_PORT = 587
 #MAIL_USERNAME = 'richi.lightshadow@gmail.com'
 #MAIL_PASSWORD = '-QecaEu7'
-MAIL_USERNAME = 'lkjh@you-spam.com'
-MAIL_PASSWORD = 'lkjh'
-MAIL_USE_TLS = True
-MAIL_USE_SSL = False
+MAIL_USERNAME = 'cs14.test@web.de'
+MAIL_PASSWORD = 'AchimMenzel32'
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True

@@ -105,11 +105,11 @@ IMG_UPLOAD_URL = '/static/uploads/'
 #APP_THEME = "yeti.css"
 APP_THEME = "lumen.css"
 
-MAIL_SERVER = 'mail.gmx.net'
+MAIL_SERVER = 'smtp.trashmail.com'
 MAIL_PORT = 465
 #MAIL_USERNAME = 'richi.lightshadow@gmail.com'
 #MAIL_PASSWORD = '-QecaEu7'
-MAIL_USERNAME = 'richard.luedtke@gmx.de'
-MAIL_PASSWORD = '<zA6G4iEt9'
-MAIL_USE_TLS = False
-MAIL_USE_SSL = True
+MAIL_USERNAME = 'lkjh@you-spam.com'
+MAIL_PASSWORD = 'lkjh'
+MAIL_USE_TLS = True
+MAIL_USE_SSL = False

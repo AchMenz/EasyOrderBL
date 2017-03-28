@@ -107,8 +107,7 @@ APP_THEME = "lumen.css"
 
 MAIL_SERVER = 'smtp.web.de'
 MAIL_PORT = 587
-#MAIL_USERNAME = 'richi.lightshadow@gmail.com'
-#MAIL_PASSWORD = '-QecaEu7'
+
 MAIL_USERNAME = 'cs14.test@web.de'
 MAIL_PASSWORD = 'AchimMenzel32'
 MAIL_USE_TLS = True

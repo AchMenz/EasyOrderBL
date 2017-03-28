@@ -39,11 +39,14 @@ class PriceAdmin(ModelView):
     def sendmail(self):
 
         mail = Mail(app)
+
         msg = Message("Hello World",
-                      sender="richard.luedtke@gmx.de",
+                      sender="cs14.test@web.de",
                       recipients="richi.lightshadow@gmail.com")
+        mail.connect()
         mail.send(msg)
         return 'Hello World!'
+
 
 
 

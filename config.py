@@ -111,5 +111,5 @@ MAIL_PORT = 587
 #MAIL_PASSWORD = '-QecaEu7'
 MAIL_USERNAME = 'cs14.test@web.de'
 MAIL_PASSWORD = 'AchimMenzel32'
-MAIL_USE_TLS = False
-MAIL_USE_SSL = True
+MAIL_USE_TLS = True
+MAIL_USE_SSL = False

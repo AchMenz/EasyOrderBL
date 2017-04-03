@@ -62,7 +62,7 @@ class ProductAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_product)
     # columns for label
-    label_columns = {'category.name':_('Category Name'),'name':_('Product Name')}
+    label_columns = {'category.name':_('Category'),'category':_('Category'),'name':_('Product Name')}
     #the related view (subtable that is in relation)
     related_views = [PriceAdmin]
     #columns shown in listview
@@ -76,11 +76,11 @@ class ProductAdmin(ModelView):
     #columns in the showform
     show_columns = ['id', 'category', 'name']
     #title of showform
-    show_title = 'Product Details'
+    show_title = _('Product Details')
     #title of addform
-    add_title = 'Product Add'
+    add_title = _('Product Add')
     #title of editform
-    edit_title = 'Product Edit'
+    edit_title = _('Product Edit')
 
 # class ProductNoAdmin(ProductAdmin):
 #     #columns not editable
@@ -91,7 +91,7 @@ class CategoryAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_category)
     # columns for label
-    label_columns = {'name':_('Category Name')}
+    label_columns = {'name':_('Category')}
     #the related view (subtable that is in relation)
     related_views = [ProductAdmin]
     #columns shown in listview
@@ -105,11 +105,11 @@ class CategoryAdmin(ModelView):
     #columns in the showform
     show_columns = ['id', 'name']
     #title of showform
-    show_title = 'Category Details'
+    show_title = _('Category Details')
     #title of addform
-    add_title = 'Category Add'
+    add_title = _('Category Add')
     #title of editform
-    edit_title = 'Category Edit'
+    edit_title = _('Category Edit')
 
 # class CategoryNoAdmin(CategoryAdmin):
 #     #columns not editable
@@ -119,7 +119,7 @@ class OrderlineAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_orderline)
     # columns for label
-    label_columns = {'category.name': _('Category Name'),'product.name':_('Product Name'), 'pricePerUnit.price':_('Price per Unit'),'number':_('Number'),'price':_('Price'),'comment':_('Comment')}
+    label_columns = {'category.name': _('Category'),'product.name':_('Product'), 'pricePerUnit.price':_('Price per Unit'),'number':_('Number'),'price':_('Price'),'comment':_('Comment'),'category':_('Category'),'order':_('Order')}
     #special AJAX-fields
     add_form_extra_fields = {
                     'category': AJAXSelectField('Category',
@@ -146,11 +146,11 @@ class OrderlineAdmin(ModelView):
     #columns in the showform
     show_columns = ['id', 'order', 'category', 'product', 'pricePerUnit', 'number', 'price', 'comment']
     #title of showform
-    show_title = 'Orderline Details'
+    show_title = _('Orderline Details')
     #title of addform
-    add_title = 'Orderline Add'
+    add_title = _('Orderline Add')
     #title of editform
-    edit_title = 'Orderline Edit'
+    edit_title = _('Orderline Edit')
 
 # class OrderlineNoAdmin(OrderlineAdmin):
 #     #columns not editable
@@ -162,7 +162,7 @@ class OrdersAdmin(ModelView):
     #the related view (subtable that is in relation)
     related_views = [OrderlineAdmin]
     # columns for label
-    label_columns = {'supplier.client':_('Supplier client'), 'target_date':_('Target date'), 'total_number':_('Total number'), 'total_price':_('Total price')}
+    label_columns = {'supplier.client':_('Supplier'), 'target_date':_('Target date'), 'total_number':_('Total number'), 'total_price':_('Total price'),'supplier':_('Supplier')}
     #columns shown in listview
     list_columns = ['id', 'supplier.client', 'target_date', 'total_number', 'total_price']
     #how the list is ordered
@@ -174,13 +174,13 @@ class OrdersAdmin(ModelView):
     #columns in the showform
     show_columns = ['id', 'supplier.client', 'target_date', 'target_time', 'total_number', 'total_price', 'comment']
     #title of showform
-    show_title = 'Orders Details'
+    show_title = _('Orders Details')
     #title of addform
-    add_title = 'Orders Add'
+    add_title = _('Orders Add')
     #title of editform
-    edit_title = 'Orders Edit'
+    edit_title = _('Orders Edit')
     #title of the list
-    list_title = "OrdersAdmin"
+    list_title = _("OrdersAdmin")
     #how many entries are shown on one page
     page_size = 10
     #base order in the beginning
@@ -196,7 +196,7 @@ class SupplierAdmin(ModelView):
     #the related view (subtable that is in relation)
     related_views = [OrdersAdmin]
     # columns for label
-    label_columns = {'client':_('Client'),'email':_('Email')}
+    label_columns = {'client':_('Client'),'email':_('Email'),'address':_('Adress'),'telephone':_('Telephone'),'email':_('Email adress'),'emailText':_('Email Text')}
     #columns shown in listview
     list_columns = ['client', 'email']
     #how the list is ordered
@@ -208,11 +208,11 @@ class SupplierAdmin(ModelView):
     #columns in the showform
     show_columns = ['id', 'client', 'address', 'telephone', 'email', 'emailText', 'comment']
     #title of showform
-    show_title = 'Supplier Details'
+    show_title = _('Supplier Details')
     #title of addform
-    add_title = 'Supplier Add'
+    add_title = _('Supplier Add')
     #title of editform
-    edit_title = 'Supplier Edit'
+    edit_title = _('Supplier Edit')
 
 # class SupplierNoAdmin(SupplierAdmin):
 #     #columns not editable

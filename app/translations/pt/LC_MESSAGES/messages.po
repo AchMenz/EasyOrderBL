@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 14:32+0100\n"
+"POT-Creation-Date: 2017-04-03 15:19+0100\n"
 "PO-Revision-Date: 2015-10-26 13:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pt\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: app/views.py:17 app/views.py:65 app/views.py:122
-msgid "Product Name"
+#: app/views.py:17 app/views.py:122 app/views.py:229
+msgid "Product"
 msgstr ""
 
 #: app/views.py:17
@@ -31,8 +31,52 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: app/views.py:65 app/views.py:94 app/views.py:122
-msgid "Category Name"
+#: app/views.py:29
+msgid "Price Details"
+msgstr ""
+
+#: app/views.py:31
+msgid "Price Add"
+msgstr ""
+
+#: app/views.py:33
+msgid "Price Edit"
+msgstr ""
+
+#: app/views.py:35
+msgid "PriceAdmin"
+msgstr ""
+
+#: app/views.py:65 app/views.py:94 app/views.py:122 app/views.py:228
+msgid "Category"
+msgstr ""
+
+#: app/views.py:65
+msgid "Product Name"
+msgstr ""
+
+#: app/views.py:79
+msgid "Product Details"
+msgstr ""
+
+#: app/views.py:81
+msgid "Product Add"
+msgstr ""
+
+#: app/views.py:83
+msgid "Product Edit"
+msgstr ""
+
+#: app/views.py:108
+msgid "Category Details"
+msgstr ""
+
+#: app/views.py:110
+msgid "Category Add"
+msgstr ""
+
+#: app/views.py:112
+msgid "Category Edit"
 msgstr ""
 
 #: app/views.py:122
@@ -47,8 +91,24 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: app/views.py:165
-msgid "Supplier client"
+#: app/views.py:122
+msgid "Order"
+msgstr ""
+
+#: app/views.py:149
+msgid "Orderline Details"
+msgstr ""
+
+#: app/views.py:151
+msgid "Orderline Add"
+msgstr ""
+
+#: app/views.py:153
+msgid "Orderline Edit"
+msgstr ""
+
+#: app/views.py:165 app/views.py:225
+msgid "Supplier"
 msgstr ""
 
 #: app/views.py:165
@@ -63,6 +123,22 @@ msgstr ""
 msgid "Total price"
 msgstr ""
 
+#: app/views.py:177
+msgid "Orders Details"
+msgstr ""
+
+#: app/views.py:179
+msgid "Orders Add"
+msgstr ""
+
+#: app/views.py:181
+msgid "Orders Edit"
+msgstr ""
+
+#: app/views.py:183
+msgid "OrdersAdmin"
+msgstr ""
+
 #: app/views.py:199
 msgid "Client"
 msgstr ""
@@ -71,12 +147,36 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: app/views.py:225 app/views.py:226 app/views.py:227
-msgid "Orders"
+#: app/views.py:199
+msgid "Adress"
 msgstr ""
 
-#: app/views.py:225
-msgid "Supplier"
+#: app/views.py:199
+msgid "Telephone"
+msgstr ""
+
+#: app/views.py:199
+msgid "Email adress"
+msgstr ""
+
+#: app/views.py:199
+msgid "Email Text"
+msgstr ""
+
+#: app/views.py:211
+msgid "Supplier Details"
+msgstr ""
+
+#: app/views.py:213
+msgid "Supplier Add"
+msgstr ""
+
+#: app/views.py:215
+msgid "Supplier Edit"
+msgstr ""
+
+#: app/views.py:225 app/views.py:226 app/views.py:227
+msgid "Orders"
 msgstr ""
 
 #: app/views.py:227
@@ -85,14 +185,6 @@ msgstr ""
 
 #: app/views.py:228 app/views.py:229 app/views.py:230
 msgid "Products"
-msgstr ""
-
-#: app/views.py:228
-msgid "Category"
-msgstr ""
-
-#: app/views.py:229
-msgid "Product"
 msgstr ""
 
 #: app/templates/404.html:4
@@ -152,5 +244,74 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "User confirmation needed"
+#~ msgstr ""
+
+#~ msgid "Product Name"
+#~ msgstr ""
+
+#~ msgid "Date"
+#~ msgstr ""
+
+#~ msgid "Price"
+#~ msgstr ""
+
+#~ msgid "Category Name"
+#~ msgstr ""
+
+#~ msgid "Price per Unit"
+#~ msgstr ""
+
+#~ msgid "Number"
+#~ msgstr ""
+
+#~ msgid "Comment"
+#~ msgstr ""
+
+#~ msgid "Supplier client"
+#~ msgstr ""
+
+#~ msgid "Target date"
+#~ msgstr ""
+
+#~ msgid "Total number"
+#~ msgstr ""
+
+#~ msgid "Total price"
+#~ msgstr ""
+
+#~ msgid "Client"
+#~ msgstr ""
+
+#~ msgid "Email"
+#~ msgstr ""
+
+#~ msgid "Orders"
+#~ msgstr ""
+
+#~ msgid "Supplier"
+#~ msgstr ""
+
+#~ msgid "Orderline"
+#~ msgstr ""
+
+#~ msgid "Products"
+#~ msgstr ""
+
+#~ msgid "Category"
+#~ msgstr ""
+
+#~ msgid "Product"
+#~ msgstr ""
+
+#~ msgid "Price Details"
+#~ msgstr ""
+
+#~ msgid "Price Add"
+#~ msgstr ""
+
+#~ msgid "Price Edit"
+#~ msgstr ""
+
+#~ msgid "PriceAdmin"
 #~ msgstr ""
 

@@ -14,7 +14,7 @@ class PriceAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_price)
     #columns for label
-    label_columns = {'product.name':_('Product Name'),'date':_('Date'), 'price':_('Price')}
+    label_columns = {'product.name':_('Product'),'product':_('Product'),'date':_('Date'), 'price':_('Price')}
     #columns shown in listview
     list_columns = ['id', 'product.name', 'date', 'price']
     #how the list is ordered
@@ -26,13 +26,13 @@ class PriceAdmin(ModelView):
     #columns in the showform
     show_columns = ['id', 'product', 'date']
     #title of showform
-    show_title = 'Price Details'
+    show_title = _('Price Details')
     #title of addform
-    add_title = 'Price Add'
+    add_title = _('Price Add')
     #title of editform
-    edit_title = 'Price Edit'
+    edit_title = _('Price Edit')
     #title of the list
-    list_title = "PriceAdmin"
+    list_title = _("PriceAdmin")
     #how many entries are shown on one page
     page_size = 10
     #base order in the beginning

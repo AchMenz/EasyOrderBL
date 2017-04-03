@@ -59,7 +59,7 @@ AUTH_ROLE_PUBLIC = 'Public'
 # Babel config for translations
 #---------------------------------------------------
 # Setup default language
-BABEL_DEFAULT_LOCALE = 'de'
+BABEL_DEFAULT_LOCALE = 'gb'
 # Your application default translation path
 BABEL_DEFAULT_FOLDER = 'translations'
 # The allowed translation for you app

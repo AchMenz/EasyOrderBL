@@ -1,23 +1,54 @@
 # Translations template for PROJECT.
-# Copyright (C) 2015 ORGANIZATION
+# Copyright (C) 2017 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-10-26 13:23+0000\n"
+"POT-Creation-Date: 2017-04-03 07:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.0\n"
+"Generated-By: Babel 2.3.4\n"
 
 #: app/templates/404.html:4
 msgid "Page not found"
+msgstr ""
+
+#: app/templates/appbuilder/footer.html:2
+msgid "Questions? Ask:"
+msgstr ""
+
+#: app/templates/appbuilder/footer.html:2
+msgid "or"
+msgstr ""
+
+#: app/templates/appbuilder/index.html:4
+msgid "Welcome to UniBestAP"
+msgstr ""
+
+#: app/templates/appbuilder/index.html:7
+msgid ""
+"What is UniBestAP? UniBestAP is a tool where you and your suppliers can "
+"manage your orders. You can create new suppliers, create new orders, "
+"change old orders or execute orders."
+msgstr ""
+
+#: app/templates/appbuilder/index.html:8
+msgid "Link to"
+msgstr ""
+
+#: app/templates/appbuilder/index.html:8
+msgid "source"
+msgstr ""
+
+#: app/templates/appbuilder/general/confirm.html:6
+msgid "User confirmation needed"
 msgstr ""
 

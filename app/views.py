@@ -45,8 +45,7 @@ class PriceAdmin(ModelView):
 
         msg = Message("Hello World",
                       sender="cs14.test@web.de",
-                      recipients="richi.lightshadow@gmail.com")
-        mail.connect()
+                      recipients=["richi.lightshadow@gmail.com"])
         mail.send(msg)
         return 'Hello World!'
 

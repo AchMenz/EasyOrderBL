@@ -6,12 +6,15 @@ from flask_appbuilder.fieldwidgets import Select2AJAXWidget, Select2SlaveAJAXWid
 from app import appbuilder, db, app
 from .models import table_supplier, table_orders, table_orderline, table_category, table_product, table_price
 from flask_mail import Message, Mail
+from flask.ext.babel import lazy_gettext as _
 
 
 
 class PriceAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_price)
+    #columns for label
+    label_columns = {'product.name':_('Product Name'),'date':_('Date'), 'price':_('Price')}
     #columns shown in listview
     list_columns = ['id', 'product.name', 'date', 'price']
     #how the list is ordered
@@ -58,6 +61,8 @@ class PriceAdmin(ModelView):
 class ProductAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_product)
+    # columns for label
+    label_columns = {'category.name':_('Category Name'),'name':_('Product Name')}
     #the related view (subtable that is in relation)
     related_views = [PriceAdmin]
     #columns shown in listview
@@ -85,6 +90,8 @@ class ProductAdmin(ModelView):
 class CategoryAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_category)
+    # columns for label
+    label_columns = {'name':_('Category Name')}
     #the related view (subtable that is in relation)
     related_views = [ProductAdmin]
     #columns shown in listview
@@ -111,6 +118,8 @@ class CategoryAdmin(ModelView):
 class OrderlineAdmin(ModelView):
     #base table
     datamodel = SQLAInterface(table_orderline)
+    # columns for label
+    label_columns = {'category.name': _('Category Name'),'product.name':_('Product Name'), 'pricePerUnit.price':_('Price per Unit'),'number':_('Number'),'price':_('Price'),'comment':_('Comment')}
     #special AJAX-fields
     add_form_extra_fields = {
                     'category': AJAXSelectField('Category',
@@ -152,6 +161,8 @@ class OrdersAdmin(ModelView):
     datamodel = SQLAInterface(table_orders)
     #the related view (subtable that is in relation)
     related_views = [OrderlineAdmin]
+    # columns for label
+    label_columns = {'supplier.client':_('Supplier client'), 'target_date':_('Target date'), 'total_number':_('Total number'), 'total_price':_('Total price')}
     #columns shown in listview
     list_columns = ['id', 'supplier.client', 'target_date', 'total_number', 'total_price']
     #how the list is ordered
@@ -184,6 +195,8 @@ class SupplierAdmin(ModelView):
     datamodel = SQLAInterface(table_supplier)
     #the related view (subtable that is in relation)
     related_views = [OrdersAdmin]
+    # columns for label
+    label_columns = {'client':_('Client'),'email':_('Email')}
     #columns shown in listview
     list_columns = ['client', 'email']
     #how the list is ordered
@@ -209,12 +222,12 @@ class SupplierAdmin(ModelView):
 db.create_all()
 
 #register the views here
-appbuilder.add_view(SupplierAdmin, "SupplierAdmin", category = "Orders")
-appbuilder.add_view(OrdersAdmin, "OrdersAdmin", category = "Orders")
-appbuilder.add_view(OrderlineAdmin, "OrderlineAdmin", category = "Orders")
-appbuilder.add_view(CategoryAdmin, "CategoryAdmin", category = "Products")
-appbuilder.add_view(ProductAdmin, "ProductAdmin", category = "Products")
-appbuilder.add_view(PriceAdmin, "PriceAdmin", category = "Products")
+appbuilder.add_view(SupplierAdmin, "SupplierAdmin", category = _("Orders"), label = _('Supplier'))
+appbuilder.add_view(OrdersAdmin, "OrdersAdmin", category = _("Orders"), label = _('Orders'))
+appbuilder.add_view(OrderlineAdmin, "OrderlineAdmin", category = _("Orders"), label = _('Orderline'))
+appbuilder.add_view(CategoryAdmin, "CategoryAdmin", category = _("Products"), label = _('Category'))
+appbuilder.add_view(ProductAdmin, "ProductAdmin", category = _("Products"), label = _('Product'))
+appbuilder.add_view(PriceAdmin, "PriceAdmin", category = _("Products"), label = _('Price'))
 
 # appbuilder.add_view(SupplierNoAdmin, "SupplierNoAdmin", category = "Orders")
 # appbuilder.add_view(OrdersNoAdmin, "OrdersNoAdmin", category = "Orders")

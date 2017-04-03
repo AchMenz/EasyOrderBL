@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 07:28+0100\n"
+"POT-Creation-Date: 2017-04-03 14:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,82 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
+
+#: app/views.py:17 app/views.py:65 app/views.py:122
+msgid "Product Name"
+msgstr ""
+
+#: app/views.py:17
+msgid "Date"
+msgstr ""
+
+#: app/views.py:17 app/views.py:122 app/views.py:230
+msgid "Price"
+msgstr ""
+
+#: app/views.py:65 app/views.py:94 app/views.py:122
+msgid "Category Name"
+msgstr ""
+
+#: app/views.py:122
+msgid "Price per Unit"
+msgstr ""
+
+#: app/views.py:122
+msgid "Number"
+msgstr ""
+
+#: app/views.py:122
+msgid "Comment"
+msgstr ""
+
+#: app/views.py:165
+msgid "Supplier client"
+msgstr ""
+
+#: app/views.py:165
+msgid "Target date"
+msgstr ""
+
+#: app/views.py:165
+msgid "Total number"
+msgstr ""
+
+#: app/views.py:165
+msgid "Total price"
+msgstr ""
+
+#: app/views.py:199
+msgid "Client"
+msgstr ""
+
+#: app/views.py:199
+msgid "Email"
+msgstr ""
+
+#: app/views.py:225 app/views.py:226 app/views.py:227
+msgid "Orders"
+msgstr ""
+
+#: app/views.py:225
+msgid "Supplier"
+msgstr ""
+
+#: app/views.py:227
+msgid "Orderline"
+msgstr ""
+
+#: app/views.py:228 app/views.py:229 app/views.py:230
+msgid "Products"
+msgstr ""
+
+#: app/views.py:228
+msgid "Category"
+msgstr ""
+
+#: app/views.py:229
+msgid "Product"
+msgstr ""
 
 #: app/templates/404.html:4
 msgid "Page not found"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 07:28+0100\n"
+"POT-Creation-Date: 2017-04-03 14:32+0100\n"
 "PO-Revision-Date: 2017-04-03 07:28+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -18,32 +18,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
+#: app/views.py:17 app/views.py:65 app/views.py:122
+msgid "Product Name"
+msgstr "Produktname"
+
+#: app/views.py:17
+msgid "Date"
+msgstr "Datum"
+
+#: app/views.py:17 app/views.py:122 app/views.py:230
+msgid "Price"
+msgstr "Preis"
+
+#: app/views.py:65 app/views.py:94 app/views.py:122
+msgid "Category Name"
+msgstr "Kategory"
+
+#: app/views.py:122
+msgid "Price per Unit"
+msgstr "Preis pro Einheit"
+
+#: app/views.py:122
+msgid "Number"
+msgstr "Anzahl"
+
+#: app/views.py:122
+msgid "Comment"
+msgstr "Kommentar"
+
+#: app/views.py:165
+msgid "Supplier client"
+msgstr "Lieferant"
+
+#: app/views.py:165
+msgid "Target date"
+msgstr "Zieldatum"
+
+#: app/views.py:165
+msgid "Total number"
+msgstr "Gesamtanzahl"
+
+#: app/views.py:165
+msgid "Total price"
+msgstr "Gesamtpreis"
+
+#: app/views.py:199
+msgid "Client"
+msgstr "Kunde"
+
+#: app/views.py:199
+msgid "Email"
+msgstr "Email"
+
+#: app/views.py:225 app/views.py:226 app/views.py:227
+msgid "Orders"
+msgstr "Bestellungen"
+
+#: app/views.py:225
+msgid "Supplier"
+msgstr "Lieferant"
+
+#: app/views.py:227
+msgid "Orderline"
+msgstr "Bestellung"
+
+#: app/views.py:228 app/views.py:229 app/views.py:230
+msgid "Products"
+msgstr "Produkte"
+
+#: app/views.py:228
+msgid "Category"
+msgstr "Kategorie"
+
+#: app/views.py:229
+msgid "Product"
+msgstr "Produkt"
+
+#: app/templates/404.html:4
 msgid "Page not found"
 msgstr "Seite nicht gefunden"
 
+#: app/templates/appbuilder/footer.html:2
 msgid "Questions? Ask:"
 msgstr "Fragen? Schreib:"
 
+#: app/templates/appbuilder/footer.html:2
 msgid "or"
 msgstr "oder"
 
+#: app/templates/appbuilder/index.html:4
 msgid "Welcome to UniBestAP"
 msgstr "Willkommen zu UniBestAP"
 
+#: app/templates/appbuilder/index.html:7
 msgid ""
-"What is UniBestAP? UniBestAP is a "
-"tool where you and your suppliers "
-"can manage your orders. You can "
-"create new suppliers, create new orders,"
-" change old orders or execute orders."
-msgstr "Was ist UniBestAP? UniBestAP ist ein Werkzeug mit dem du und deine Lieferanten eure Bestellungen organisieren können."
+"What is UniBestAP? UniBestAP is a tool where you and your suppliers can "
+"manage your orders. You can create new suppliers, create new orders, "
+"change old orders or execute orders."
+msgstr "Was ist UniBestAP? UniBestAp ist ein Werkzeug mit dem du und deine Lieferanten deine Bestellungen organisieren könnt"
 
+#: app/templates/appbuilder/index.html:8
 msgid "Link to"
 msgstr "Link zur"
 
+#: app/templates/appbuilder/index.html:8
 msgid "source"
 msgstr "Quelle"
 
+#: app/templates/appbuilder/general/confirm.html:6
 msgid "User confirmation needed"
 msgstr "Benutzerbestätigung benötigt"
+
 

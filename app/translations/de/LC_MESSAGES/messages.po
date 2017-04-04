@@ -20,206 +20,206 @@ msgstr ""
 
 #: app/views.py:17 app/views.py:122 app/views.py:229
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #: app/views.py:17
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: app/views.py:17 app/views.py:122 app/views.py:230
 msgid "Price"
-msgstr ""
+msgstr "Preis"
 
 #: app/views.py:29
 msgid "Price Details"
-msgstr ""
+msgstr "Preis Informationen"
 
 #: app/views.py:31
 msgid "Price Add"
-msgstr ""
+msgstr "Preis hinzufügen"
 
 #: app/views.py:33
 msgid "Price Edit"
-msgstr ""
+msgstr "Preis bearbeiten"
 
 #: app/views.py:35
 msgid "PriceAdmin"
-msgstr ""
+msgstr "Preis"
 
 #: app/views.py:65 app/views.py:94 app/views.py:122 app/views.py:228
 msgid "Category"
-msgstr ""
+msgstr "Kategory"
 
 #: app/views.py:65
 msgid "Product Name"
-msgstr ""
+msgstr "Produktname"
 
 #: app/views.py:79
 msgid "Product Details"
-msgstr ""
+msgstr "Produkt Informationen"
 
 #: app/views.py:81
 msgid "Product Add"
-msgstr ""
+msgstr "Produkt hinzufügen"
 
 #: app/views.py:83
 msgid "Product Edit"
-msgstr ""
+msgstr "Produkt bearbeiten"
 
 #: app/views.py:108
 msgid "Category Details"
-msgstr ""
+msgstr "Kategory Informationen"
 
 #: app/views.py:110
 msgid "Category Add"
-msgstr ""
+msgstr "Kategory hinzufügen"
 
 #: app/views.py:112
 msgid "Category Edit"
-msgstr ""
+msgstr "Kategory bearbeiten"
 
 #: app/views.py:122
 msgid "Price per Unit"
-msgstr ""
+msgstr "Preis pro Einheit"
 
 #: app/views.py:122
 msgid "Number"
-msgstr ""
+msgstr "Anzahl"
 
 #: app/views.py:122
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #: app/views.py:122
 msgid "Order"
-msgstr ""
+msgstr "Bestellung"
 
 #: app/views.py:149
 msgid "Orderline Details"
-msgstr ""
+msgstr "Bestelldetails"
 
 #: app/views.py:151
 msgid "Orderline Add"
-msgstr ""
+msgstr "Bestellung hinzufügen"
 
 #: app/views.py:153
 msgid "Orderline Edit"
-msgstr ""
+msgstr "Bestelleung bearbeiten"
 
 #: app/views.py:165 app/views.py:225
 msgid "Supplier"
-msgstr ""
+msgstr "Lieferant"
 
 #: app/views.py:165
 msgid "Target date"
-msgstr ""
+msgstr "Zieldatum"
 
 #: app/views.py:165
 msgid "Total number"
-msgstr ""
+msgstr "Endanzahl"
 
 #: app/views.py:165
 msgid "Total price"
-msgstr ""
+msgstr "Endpreis"
 
 #: app/views.py:177
 msgid "Orders Details"
-msgstr ""
+msgstr "Bestelldetails"
 
 #: app/views.py:179
 msgid "Orders Add"
-msgstr ""
+msgstr "Bestellung hinzufügen"
 
 #: app/views.py:181
 msgid "Orders Edit"
-msgstr ""
+msgstr "Bestellung bearbeiten"
 
 #: app/views.py:183
 msgid "OrdersAdmin"
-msgstr ""
+msgstr "Bestellung"
 
 #: app/views.py:199
 msgid "Client"
-msgstr ""
+msgstr "Kunde"
 
 #: app/views.py:199
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: app/views.py:199
 msgid "Adress"
-msgstr ""
+msgstr "Adresse"
 
 #: app/views.py:199
 msgid "Telephone"
-msgstr ""
+msgstr "Telephone"
 
 #: app/views.py:199
 msgid "Email adress"
-msgstr ""
+msgstr "Email Adresse"
 
 #: app/views.py:199
 msgid "Email Text"
-msgstr ""
+msgstr "Email Text"
 
 #: app/views.py:211
 msgid "Supplier Details"
-msgstr ""
+msgstr "Lieferantendetails"
 
 #: app/views.py:213
 msgid "Supplier Add"
-msgstr ""
+msgstr "Lieferant hinzufügen"
 
 #: app/views.py:215
 msgid "Supplier Edit"
-msgstr ""
+msgstr "Lieferanten hinzufügen"
 
 #: app/views.py:225 app/views.py:226 app/views.py:227
 msgid "Orders"
-msgstr ""
+msgstr "Bestellungen"
 
 #: app/views.py:227
 msgid "Orderline"
-msgstr ""
+msgstr "Bestellungen"
 
 #: app/views.py:228 app/views.py:229 app/views.py:230
 msgid "Products"
-msgstr ""
+msgstr "Produkt"
 
 #: app/templates/404.html:4
 msgid "Page not found"
-msgstr ""
+msgstr "Seite nicht gefunden"
 
 #: app/templates/appbuilder/footer.html:2
 msgid "Questions? Ask:"
-msgstr ""
+msgstr "Fragen? Schreib:"
 
 #: app/templates/appbuilder/footer.html:2
 msgid "or"
-msgstr ""
+msgstr "oder"
 
 #: app/templates/appbuilder/index.html:4
 msgid "Welcome to UniBestAP"
-msgstr ""
+msgstr "Willkomen zu UniBestAP"
 
 #: app/templates/appbuilder/index.html:7
 msgid ""
 "What is UniBestAP? UniBestAP is a tool where you and your suppliers can "
 "manage your orders. You can create new suppliers, create new orders, "
 "change old orders or execute orders."
-msgstr ""
+msgstr "Was ist UniBestAP? UniBestAP ist ein Werkzeug mit dem du und deine Leiferanten deine Bestellungen bearbeiten könnt."
 
 #: app/templates/appbuilder/index.html:8
 msgid "Link to"
-msgstr ""
+msgstr "Link zur"
 
 #: app/templates/appbuilder/index.html:8
 msgid "source"
-msgstr ""
+msgstr "Quelle"
 
 #: app/templates/appbuilder/general/confirm.html:6
 msgid "User confirmation needed"
-msgstr ""
+msgstr "Benutzerbestätigung benötigt"
 
 #~ msgid "Product Name"
 #~ msgstr ""

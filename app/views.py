@@ -32,7 +32,7 @@ class PriceAdmin(ModelView):
     #title of editform
     edit_title = _('Price Edit')
     #title of the list
-    list_title = _("PriceAdmin")
+    list_title = _('PriceAdmin')
     #how many entries are shown on one page
     page_size = 10
     #base order in the beginning
@@ -179,7 +179,7 @@ class OrdersAdmin(ModelView):
     #title of editform
     edit_title = _('Orders Edit')
     #title of the list
-    list_title = _("OrdersAdmin")
+    list_title = _('OrdersAdmin')
     #how many entries are shown on one page
     page_size = 10
     #base order in the beginning
@@ -221,12 +221,12 @@ class SupplierAdmin(ModelView):
 db.create_all()
 
 #register the views here
-appbuilder.add_view(SupplierAdmin, "SupplierAdmin", category = _("Orders"), label = _('Supplier'))
-appbuilder.add_view(OrdersAdmin, "OrdersAdmin", category = _("Orders"), label = _('Orders'))
-appbuilder.add_view(OrderlineAdmin, "OrderlineAdmin", category = _("Orders"), label = _('Orderline'))
-appbuilder.add_view(CategoryAdmin, "CategoryAdmin", category = _("Products"), label = _('Category'))
-appbuilder.add_view(ProductAdmin, "ProductAdmin", category = _("Products"), label = _('Product'))
-appbuilder.add_view(PriceAdmin, "PriceAdmin", category = _("Products"), label = _('Price'))
+appbuilder.add_view(SupplierAdmin, 'SupplierAdmin', category = 'Orders', label = _('Supplier'))
+appbuilder.add_view(OrdersAdmin, 'OrdersAdmin', category = 'Orders', label = _('Orders'))
+appbuilder.add_view(OrderlineAdmin, 'OrderlineAdmin', category = 'Orders', label = _('Orderline'))
+appbuilder.add_view(CategoryAdmin, 'CategoryAdmin', category = 'Products', label = _('Category'))
+appbuilder.add_view(ProductAdmin, 'ProductAdmin', category = 'Products', label = _('Product'))
+appbuilder.add_view(PriceAdmin, 'PriceAdmin', category = 'Products', label = _('Price'))
 
 # appbuilder.add_view(SupplierNoAdmin, "SupplierNoAdmin", category = "Orders")
 # appbuilder.add_view(OrdersNoAdmin, "OrdersNoAdmin", category = "Orders")

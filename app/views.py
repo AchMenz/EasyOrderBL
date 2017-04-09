@@ -1,16 +1,17 @@
 from flask import render_template, Flask
 from flask.ext.appbuilder.models.sqla.interface import SQLAInterface
-from flask.ext.appbuilder import ModelView, BaseView, expose
+from flask.ext.appbuilder import BaseView, expose
 from flask_appbuilder.fields import AJAXSelectField
 from flask_appbuilder.fieldwidgets import Select2AJAXWidget, Select2SlaveAJAXWidget
 from app import appbuilder, db, app
 from .models import table_supplier, table_orders, table_orderline, table_category, table_product, table_price
 from flask_mail import Message, Mail
 from flask.ext.babel import lazy_gettext as _
+from .modifiedClasses.views_modified import ModelViewModified
 
 
 
-class PriceAdmin(ModelView):
+class PriceAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_price)
     #columns for label
@@ -57,7 +58,7 @@ class PriceAdmin(ModelView):
 #     base_permissions = ['can_list']
 
 
-class ProductAdmin(ModelView):
+class ProductAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_product)
     # columns for label
@@ -86,7 +87,7 @@ class ProductAdmin(ModelView):
 #     base_permissions = ['can_list']
 
 
-class CategoryAdmin(ModelView):
+class CategoryAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_category)
     # columns for label
@@ -114,7 +115,7 @@ class CategoryAdmin(ModelView):
 #     #columns not editable
 #     base_permissions = ['can_list']
     
-class OrderlineAdmin(ModelView):
+class OrderlineAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_orderline)
     # columns for label
@@ -155,7 +156,7 @@ class OrderlineAdmin(ModelView):
 #     #columns not editable
 #     base_permissions = ['can_list']
    
-class OrdersAdmin(ModelView):
+class OrdersAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_orders)
     #the related view (subtable that is in relation)
@@ -189,7 +190,7 @@ class OrdersAdmin(ModelView):
 #     #columns not editable
 #     base_permissions = ['can_list']
 
-class SupplierAdmin(ModelView):
+class SupplierAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_supplier)
     #the related view (subtable that is in relation)

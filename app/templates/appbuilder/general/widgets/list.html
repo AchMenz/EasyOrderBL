@@ -58,7 +58,7 @@
 
                 {% for value in include_columns %}
                     <td style="padding:0px">
-                        {% set path = url_for(modelview_name + '.show',pk=pk) %}
+                        {% set path = url_for(modelview_name + '.showlist',pk=pk) %}
                         {% set path = path | set_link_filters(filters) %}<a href="{{ path }}" class="list-group-item" style="border-radius:0;border:0px; margin:0px; text-decoration: none;">{{ item[value]|safe }}</a></td>
                 {% endfor %}
             </tr>

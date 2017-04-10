@@ -1,3 +1,4 @@
+from flask.ext.appbuilder.actions import action
 from flask import render_template, Flask
 from flask.ext.appbuilder.models.sqla.interface import SQLAInterface
 from flask.ext.appbuilder import BaseView, expose
@@ -152,10 +153,15 @@ class OrderlineAdmin(ModelViewModified):
     #title of editform
     edit_title = _('Orderline Edit')
 
+    @action("export_pdf","Export data to PDF","Do you really want to","fa-rocket")
+    def export_pdf(self, item):
+        #self.datamodel.
+        return redirect(self.get_redirect())
+
 # class OrderlineNoAdmin(OrderlineAdmin):
 #     #columns not editable
 #     base_permissions = ['can_list']
-   
+
 class OrdersAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_orders)

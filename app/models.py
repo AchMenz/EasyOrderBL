@@ -96,3 +96,10 @@ class table_orderline(Model, AuditMixin):
     number = Column(Float, nullable=False)
     price = Column(Float) 
     comment = Column(Text)
+
+    #calculates the total price of the product
+    def price (self):
+        if (self.pricePerUnit is None) or (self.number is None):
+            return "None"
+        else:
+            return self.pricePerUnit * self.number

@@ -17,9 +17,9 @@ class PriceAdmin(ModelViewModified):
     #columns for label
     label_columns = {'product.name':_('Product'),'product':_('Product'),'date':_('Date'), 'price':_('Price')}
     #columns shown in listview
-    list_columns = ['id', 'product.name', 'date', 'price']
+    list_columns = ['product.name', 'date', 'price']
     #how the list is ordered
-    order_columns = ['id', 'product.name', 'date', 'price']
+    order_columns = ['product.name', 'date', 'price']
     #columns in the addform
     add_columns = ['product', 'price', 'date']
     #columns in the editform
@@ -66,9 +66,9 @@ class ProductAdmin(ModelViewModified):
     #the related view (subtable that is in relation)
     related_views = [PriceAdmin]
     #columns shown in listview
-    list_columns = ['id', 'category.name', 'name']
+    list_columns = ['category.name', 'name']
     #how the list is ordered
-    order_columns = ['id', 'category.name', 'name']
+    order_columns = ['category.name', 'name']
     #columns in the addform
     add_columns = ['category', 'name']
     #columns in the editform
@@ -95,9 +95,9 @@ class CategoryAdmin(ModelViewModified):
     #the related view (subtable that is in relation)
     related_views = [ProductAdmin]
     #columns shown in listview
-    list_columns = ['id', 'name']
+    list_columns = ['name']
     #how the list is ordered
-    order_columns = ['id', 'name']
+    order_columns = ['name']
     #columns in the addform
     add_columns = ['name']
     #columns in the editform
@@ -164,9 +164,9 @@ class OrdersAdmin(ModelViewModified):
     # columns for label
     label_columns = {'supplier.client':_('Supplier'), 'target_date':_('Target date'), 'total_number':_('Total number'), 'total_price':_('Total price'),'supplier':_('Supplier')}
     #columns shown in listview
-    list_columns = ['id', 'supplier.client', 'target_date', 'total_number', 'total_price']
+    list_columns = ['supplier.client', 'target_date', 'total_number', 'total_price']
     #how the list is ordered
-    order_columns = ['supplier.client', 'target_date', 'target_time', 'id', 'total_number', 'total_price']
+    order_columns = ['supplier.client', 'target_date', 'target_time', 'total_number', 'total_price']
     #columns in the addform
     add_columns = ['supplier', 'target_date', 'target_time', 'comment']
     #columns in the editform
@@ -229,7 +229,8 @@ appbuilder.add_view_no_menu(OrderlineAdmin)
 #appbuilder.add_view(OrderlineAdmin, 'OrderlineAdmin', category = 'Orders', label = _('Orderline'))
 appbuilder.add_view(CategoryAdmin, 'CategoryAdmin', category = 'Products', label = _('Category'))
 appbuilder.add_view(ProductAdmin, 'ProductAdmin', category = 'Products', label = _('Product'))
-appbuilder.add_view(PriceAdmin, 'PriceAdmin', category = 'Products', label = _('Price'))
+appbuilder.add_view_no_menu(PriceAdmin)
+#appbuilder.add_view(PriceAdmin, 'PriceAdmin', category = 'Products', label = _('Price'))
 
 # appbuilder.add_view(SupplierNoAdmin, "SupplierNoAdmin", category = "Orders")
 # appbuilder.add_view(OrdersNoAdmin, "OrdersNoAdmin", category = "Orders")

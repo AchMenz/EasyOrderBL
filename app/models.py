@@ -109,11 +109,11 @@ class table_orderline(Model, AuditMixin):
     comment = Column(Text)
 
     #calculates the total price of the product
-    def price (self):
+    def total_price (self):
         if (self.pricePerUnit is None) or (self.number is None):
             return "None"
         else:
-            return self.pricePerUnit * self.number
+            return round(self.pricePerUnit.price * self.number, 2)
 
     def getid(self):
         return self.id
@@ -126,56 +126,57 @@ class table_orderline(Model, AuditMixin):
     def getNumber(self):
         return self.number
     def getTotalPrice(self):
-        return self.price
+        return self.total_price()
     def getComment(self):
         return self.comment
     def createOrderList(self):
-        w, h = 6, 1;
-        list = [[0 for x in range(w)] for y in range(h)]
+
         # [0][0] = Category, [0][1] = Product, [0][2] = PricePerUnit, [0][3] = Number, [0][4] = TotalPrice,
         # [0][5] = Comment
         # Füllt Liste mit den zugehörigen Werten, Reihenfolge siehe oben. Es wird geprüft ob ein Wert existiert
-        # und ob er den richtigen VariablenTyp besitzt, wenn nicht wird die Stelle mit 'no value gefüllt'
+        # und ob er den richtigen VariablenTyp besitzt, wenn nicht wird die Stelle mit 'None gefüllt'
+
+        list = []
         try:
             if type(self.getCategory()) is str:
-                list[0][0] = self.getCategory()
+                list.append(self.getCategory())
             else:
-                list[0][0] = 'no value'
+                list.append('None')
         except:
-            list[0][0] = 'no value'
+            list.append('None')
         try:
             if type(self.getProduct()) is str:
-                list[0][1] = self.getProduct()
+                list.append(self.getProduct())
             else:
-                list[0][1] = 'no value'
+                list.append('None')
         except:
-            list[0][1] = 'no value'
+            list.append('None')
         try:
             if type(self.getPricePerUnit()) is float:
-                list[0][2] = self.getPricePerUnit()
+                list.append(self.getPricePerUnit())
             else:
-                list[0][2] = 'no value'
+                list.append('None')
         except:
-            list[0][2] = 'no value'
+            list.append('None')
         try:
             if type(self.getNumber()) is float:
-                list[0][3] = self.getNumber()
+                list.append(self.getNumber())
             else:
-                list[0][3] = 'no value'
+                list.append('None')
         except:
-            list[0][3] = 'no value'
+            list.append('None')
         try:
             if type(self.getTotalPrice()) is float:
-                list[0][4] = self.getTotalPrice()
+                list.append(self.getTotalPrice())
             else:
-                list[0][4] = 'no value'
+                list.append('None')
         except:
-            list[0][4] = 'no value'
+            list.append('None')
         try:
             if type(self.getComment()) is str:
-                list[0][5] = self.getComment()
+                list.append(self.getComment())
             else:
-                list[0][5] = 'no value'
+                list.append('None')
         except:
-            list[0][5] = 'no value'
+            list.append('None')
         return list

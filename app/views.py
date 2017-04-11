@@ -136,20 +136,26 @@ class OrderlineAdmin(ModelViewModified):
                     datamodel=datamodel,
                     col_name='product',
                     widget=Select2SlaveAJAXWidget(master_id='category',
-                    endpoint='/orderlineadmin/api/column/add/product?_flt_0_categoryId={{ID}}'))
+                    endpoint='/orderlineadmin/api/column/add/product?_flt_0_categoryId={{ID}}')),
+
+                    'pricePerUnit': AJAXSelectField('pricePerUnit',
+                    datamodel=datamodel,
+                    col_name='pricePerUnit',
+                    widget=Select2SlaveAJAXWidget(master_id='product',
+                    endpoint='/orderlineadmin/api/column/add/pricePerUnit?_flt_0_productId={{ID}}'))
                     }
     #same AJAX-fields for edit as for add
     edit_form_extra_fields = add_form_extra_fields
     #columns shown in listview
-    list_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'number', 'price', 'comment']
+    list_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'number', 'total_price', 'comment']
     #how the list is ordered
-    order_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'number', 'price', 'comment']
+    order_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'number', 'total_price', 'comment']
     #columns in the addform
-    add_columns = ['order', 'category', 'product', 'number', 'comment']
+    add_columns = ['order', 'category', 'product', 'pricePerUnit', 'number', 'comment']
     #columns in the editform
-    edit_columns = ['order', 'category', 'product', 'number', 'comment']
+    edit_columns = ['order', 'category', 'product', 'pricePerUnit', 'number', 'comment']
     #columns in the showform
-    show_columns = ['id', 'order', 'category', 'product', 'pricePerUnit', 'number', 'price', 'comment']
+    show_columns = ['id', 'order', 'category', 'product', 'pricePerUnit', 'number', 'total_price', 'comment']
     #title of showform
     show_title = _('Orderline Details')
     #title of addform
@@ -159,16 +165,10 @@ class OrderlineAdmin(ModelViewModified):
 
     @action("export_pdf","Export data to PDF","Do you really want to","fa-rocket")
     def export_pdf(self, item):
-        x = len(item)
-        y = 12
-        sup = [[0 for x in range(x)] for y in range(y)]
         for i in item:
             #createOrderList erstellt zu dem item i eine Liste[0][5]
             print(i.createOrderList())
-
         return redirect(self.get_redirect())
-
-
 
 # class OrderlineNoAdmin(OrderlineAdmin):
 #     #columns not editable

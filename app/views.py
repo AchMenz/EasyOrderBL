@@ -9,6 +9,10 @@ from .models import table_supplier, table_orders, table_orderline, table_categor
 from flask_mail import Message, Mail
 from flask.ext.babel import lazy_gettext as _
 from .modifiedClasses.views_modified import ModelViewModified
+from flask import redirect
+import sqlite3
+
+
 
 
 
@@ -155,8 +159,16 @@ class OrderlineAdmin(ModelViewModified):
 
     @action("export_pdf","Export data to PDF","Do you really want to","fa-rocket")
     def export_pdf(self, item):
-        #self.datamodel.
+        x = len(item)
+        y = 12
+        sup = [[0 for x in range(x)] for y in range(y)]
+        for i in item:
+            #createOrderList erstellt zu dem item i eine Liste[0][5]
+            print(i.createOrderList())
+
         return redirect(self.get_redirect())
+
+
 
 # class OrderlineNoAdmin(OrderlineAdmin):
 #     #columns not editable

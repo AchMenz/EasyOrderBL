@@ -35,10 +35,10 @@ APP_NAME = "Universal Order Webapp"
 AUTH_TYPE = AUTH_DB
 
 # Uncomment to setup Full admin role name
-AUTH_ROLE_ADMIN = 'Admin'
+#AUTH_ROLE_ADMIN = 'Admin'
 
 # Uncomment to setup Public role name, no authentication needed
-AUTH_ROLE_PUBLIC = 'Public'
+#AUTH_ROLE_PUBLIC = 'Public'
 
 # Will allow user self registration
 #AUTH_USER_REGISTRATION = True

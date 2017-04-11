@@ -3,6 +3,7 @@ from flask import Flask
 from flask.ext.appbuilder import SQLA, AppBuilder
 from config import STATIC_DIR
 from flask_mail import Mail
+#from app.modified_skript.manager import SecurityManager
 
 
 """
@@ -18,6 +19,11 @@ mail = Mail(app)
 app.config.from_object('config')
 db = SQLA(app)
 #"static_folder=STATIC_DIR" hinzugefuegt; Issue #1 geloest
+####
+#Richard
+####
+#appbuilder = AppBuilder(app, db.session, static_folder=STATIC_DIR,security_manager_class=SecurityManager)
+
 appbuilder = AppBuilder(app, db.session, static_folder=STATIC_DIR)
 
 """

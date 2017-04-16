@@ -4,7 +4,6 @@ from flask.ext.appbuilder import Model
 from flask.ext.appbuilder.models.mixins import AuditMixin, FileColumn, ImageColumn
 from sqlalchemy import Column, Integer, String, ForeignKey, Unicode, Float, Date, Time, Text
 from sqlalchemy.orm import relationship
-
 from flask import Markup, url_for
 """
 
@@ -87,7 +86,7 @@ class table_price(Model, AuditMixin):
 
     #gibt eine Bezeichnung aus, unter der der Datensatz angezeigt wird
     def __repr__(self):
-        return str(self.price)
+        return str(self.price) + ', date: ' + str(self.date)
 
     def getPrice(self):
         return self.price
@@ -95,6 +94,7 @@ class table_price(Model, AuditMixin):
 # Table of one Order
 # reference to all Orders
 class table_orderline(Model, AuditMixin):
+
     id = Column(Integer, primary_key=True)
     orderId = Column(Integer,ForeignKey('table_orders.id')) 
     order = relationship('table_orders')
@@ -117,6 +117,8 @@ class table_orderline(Model, AuditMixin):
 
     def getid(self):
         return self.id
+    def getProductId(self):
+        return self.productId
     def getCategory(self):
         return self.category.getName()
     def getProduct(self):
@@ -129,54 +131,56 @@ class table_orderline(Model, AuditMixin):
         return self.total_price()
     def getComment(self):
         return self.comment
-    def createOrderList(self):
+    def createOrderDict(self):
 
         # [0][0] = Category, [0][1] = Product, [0][2] = PricePerUnit, [0][3] = Number, [0][4] = TotalPrice,
         # [0][5] = Comment
         # Füllt Liste mit den zugehörigen Werten, Reihenfolge siehe oben. Es wird geprüft ob ein Wert existiert
         # und ob er den richtigen VariablenTyp besitzt, wenn nicht wird die Stelle mit 'None gefüllt'
 
-        list = []
+        dictProd = {}
+        dictProd["id"] = self.getid()
+        dictProd["productId"] = self.productId
         try:
             if type(self.getCategory()) is str:
-                list.append(self.getCategory())
+                dictProd["category"] = self.getCategory()
             else:
-                list.append('None')
+                dictProd["category"] = None
         except:
-            list.append('None')
+            dictProd["category"] = None
         try:
             if type(self.getProduct()) is str:
-                list.append(self.getProduct())
+                dictProd["product"] = self.getProduct()
             else:
-                list.append('None')
+                dictProd["product"] = None
         except:
-            list.append('None')
+            dictProd["product"] = None
         try:
             if type(self.getPricePerUnit()) is float:
-                list.append(self.getPricePerUnit())
+                dictProd["pricePerUnit"] = self.getPricePerUnit()
             else:
-                list.append('None')
+                dictProd["pricePerUnit"] = None
         except:
-            list.append('None')
+            dictProd["pricePerUnit"] = None
         try:
             if type(self.getNumber()) is float:
-                list.append(self.getNumber())
+                dictProd["number"] = self.getNumber()
             else:
-                list.append('None')
+                dictProd["number"] = None
         except:
-            list.append('None')
+            dictProd["number"] = None
         try:
             if type(self.getTotalPrice()) is float:
-                list.append(self.getTotalPrice())
+                dictProd["totalPrice"] = self.getTotalPrice()
             else:
-                list.append('None')
+                dictProd["totalPrice"] = None
         except:
-            list.append('None')
+            dictProd["totalPrice"] = None
         try:
             if type(self.getComment()) is str:
-                list.append(self.getComment())
+                dictProd["comment"] = self.getComment()
             else:
-                list.append('None')
+                dictProd["comment"] = None
         except:
-            list.append('None')
-        return list
+            dictProd["comment"] = None
+        return dictProd

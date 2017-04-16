@@ -1,5 +1,5 @@
 from flask.ext.appbuilder.actions import action
-from flask import render_template, Flask
+from flask import render_template, request
 from flask.ext.appbuilder.models.sqla.interface import SQLAInterface
 from flask.ext.appbuilder import BaseView, expose
 from flask_appbuilder.fields import AJAXSelectField
@@ -10,11 +10,7 @@ from flask_mail import Message, Mail
 from flask.ext.babel import lazy_gettext as _
 from .modifiedClasses.views_modified import ModelViewModified
 from flask import redirect
-import sqlite3
-
-
-
-
+from sqlalchemy import text
 
 class PriceAdmin(ModelViewModified):
     #base table
@@ -55,13 +51,9 @@ class PriceAdmin(ModelViewModified):
         mail.send(msg)
         return 'Hello World!'
 
-
-
-
 # class PriceNoAdmin(PriceAdmin):
 #     #columns not editable
 #     base_permissions = ['can_list']
-
 
 class ProductAdmin(ModelViewModified):
     #base table
@@ -90,7 +82,6 @@ class ProductAdmin(ModelViewModified):
 # class ProductNoAdmin(ProductAdmin):
 #     #columns not editable
 #     base_permissions = ['can_list']
-
 
 class CategoryAdmin(ModelViewModified):
     #base table
@@ -137,13 +128,8 @@ class OrderlineAdmin(ModelViewModified):
                     col_name='product',
                     widget=Select2SlaveAJAXWidget(master_id='category',
                     endpoint='/orderlineadmin/api/column/add/product?_flt_0_categoryId={{ID}}')),
+    }
 
-                    'pricePerUnit': AJAXSelectField('pricePerUnit',
-                    datamodel=datamodel,
-                    col_name='pricePerUnit',
-                    widget=Select2SlaveAJAXWidget(master_id='product',
-                    endpoint='/orderlineadmin/api/column/add/pricePerUnit?_flt_0_productId={{ID}}'))
-                    }
     #same AJAX-fields for edit as for add
     edit_form_extra_fields = add_form_extra_fields
     #columns shown in listview
@@ -151,9 +137,9 @@ class OrderlineAdmin(ModelViewModified):
     #how the list is ordered
     order_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'number', 'total_price', 'comment']
     #columns in the addform
-    add_columns = ['order', 'category', 'product', 'pricePerUnit', 'number', 'comment']
+    add_columns = ['order', 'category', 'product', 'number', 'comment']
     #columns in the editform
-    edit_columns = ['order', 'category', 'product', 'pricePerUnit', 'number', 'comment']
+    edit_columns = ['order', 'category', 'product', 'number', 'comment']
     #columns in the showform
     show_columns = ['id', 'order', 'category', 'product', 'pricePerUnit', 'number', 'total_price', 'comment']
     #title of showform
@@ -169,6 +155,38 @@ class OrderlineAdmin(ModelViewModified):
             #createOrderList erstellt zu dem item i eine Liste[0][5]
             print(i.createOrderList())
         return redirect(self.get_redirect())
+
+    def write_sum(self, numberTotal, priceTotal, id):
+    #writes the sums of number and prices of table orderline into table orders
+        #create a sql-query object
+        sqlUpdate = text('update table_orders set total_number= :numberTotal, total_price= :priceTotal where id = :id')
+        #write into database
+        db.engine.execute(sqlUpdate, numberTotal=numberTotal, priceTotal=priceTotal, id=id)
+
+    @action("refresh_prices","Refresh prices","Do you really want to?","fa-rocket")
+    def refresh_prices(self, item):
+    #writes the appropriate price from table_price with the newest date into table_orderline
+        #summing up variables for calculate_total function
+        numberTotal = 0
+        priceTotal = 0
+
+        for line in item:
+            #create a sql-query object
+            sqlSelect = text('select * from table_price where productId= :productId order by date desc limit 1')
+            #get one line from sql-query as a dictionary
+            newestPriceId = db.engine.execute(sqlSelect, productId=line.productId).first()
+            #create another sql-query object
+            sqlUpdate = text('update table_orderline set priceId= :priceId where id = :id')
+            #write into database
+            db.engine.execute(sqlUpdate, priceId=newestPriceId["id"], id=line.id)
+
+            #summing up some data
+            if type(line.number) == float:
+                numberTotal += line.number
+            if type(line.total_price()) == float:
+               priceTotal += line.total_price()
+        self.write_sum(numberTotal, priceTotal, item[0].orderId)
+        return redirect(request.referrer)
 
 # class OrderlineNoAdmin(OrderlineAdmin):
 #     #columns not editable

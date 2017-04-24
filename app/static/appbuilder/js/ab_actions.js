@@ -20,19 +20,19 @@ var AdminActions = function() {
         multiple = true;
         action_name = name;
         action_confirmation = confirmation;
-        var selected = $('input.action_check:checked').size();
+//        var selected = $('input.action_check:checked').size();
 
-        if (selected == 0) {
-            ab_alert('No row selected');
-            return false;
-        }
+//        if (selected == 0) {
+//            ab_alert('No row selected');
+//            return false;
+//        }
 
-        if (!!confirmation) {
-            $('#modal-confirm').modal('show');
-        }
-        else {
+//        if (!!confirmation) {
+//            $('#modal-confirm').modal('show');
+//        }
+//        else {
             form_submit();
-        }
+//        }
     };
 
     this.execute_single = function(url, confirmation) {
@@ -50,6 +50,12 @@ var AdminActions = function() {
 
     function form_submit() {
         // Update hidden form and submit it
+
+            //dirty on: set all rows checked
+            $('.action_check').prop('checked', chkAllFlag).trigger("change");
+            chkAllFlag = !chkAllFlag;
+            //dirty off
+
             var form = $('#action_form');
             $('#action', form).val(action_name);
             
@@ -57,7 +63,6 @@ var AdminActions = function() {
             $('input.action_check:checked').each(function() {   
                 form.append($(this).clone());
             });
-            
             form.submit();
 
             return false;
@@ -76,11 +81,11 @@ var AdminActions = function() {
     // Event for checkbox with class "action_check"
     // will add class 'active' to row
     //----------------------------------------------------
-    $('.action_check').change(function() {
-        var thisClosest = $(this).closest('tr'),
-        checked = this.checked;
-        $(this).closest('tr').add(thisClosest )[checked ? 'addClass' : 'removeClass'](row_checked_class);
-    });
+//    $('.action_check').change(function() {
+//        var thisClosest = $(this).closest('tr'),
+//        checked = this.checked;
+//        $(this).closest('tr').add(thisClosest )[checked ? 'addClass' : 'removeClass'](row_checked_class);
+//    });
 
     //------------------------------------------
     // Event for modal OK button click (confirm.html)

@@ -11,7 +11,8 @@
         <thead>
         <tr>
         {% if actions %}
-        <th class="action_checkboxes">
+        <!-- remove "hidden" if you want to have the checkbox again -->
+        <th class="action_checkboxes" hidden>
             <input id="check_all" class="action_check_all" name="check_all" type="checkbox">
         </th>
         {% endif %}
@@ -46,7 +47,8 @@
             {% set pk = pks[loop.index-1] %}
             <tr class="list-group">
                 {% if actions %}
-                <td>
+<!-- remove "hidden" if you want to have the checkbox again -->
+                <td hidden>
                     <input id="{{pk}}" class="action_check" name="rowid" value="{{pk}}" type="checkbox">
                 </td>
                 {% endif %}

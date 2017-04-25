@@ -166,9 +166,9 @@ class OrderlineAdmin(ModelViewModified):
         return redirect(request.referrer)
 
     @action("create_mail", "create mail from data", "Do you want to?", "fa-rocket", multiple=True, single=False)
-    def export_pdf(self, item):
+    def create_mail(self, item):
 
-        PrintOrder(item).pdf_export()
+        PrintOrder(item).send_mail()
         return redirect(request.referrer)
 
     def write_sum(self, numberTotal, priceTotal, id):
@@ -270,6 +270,23 @@ class PrintOrder():
 
     def pdf_export(self):
         self.simplePrint()
+
+    def send_mail(self):
+        mail = Mail(app)
+
+        mailOrderText = "\n\n" + "Category" + "\t" + "|" + "\t" + "Product" + "\t" + "|" + "\t" + "Number" + "\t" + "|" + "\t" + "total Price"
+
+        for line in self.orders:
+            mailOrderText += "\n" + line["category"] + "\t" + "|" + "\t" + line["product"] + "\t" + "|" + "\t" + str(line["number"]) + "\t" + "|" + "\t" + str(line["total_price"])
+
+        msg = Message("Order to " + str(self.target_date),
+            body=self.emailText + mailOrderText,
+            sender="cs14.test@web.de",
+            #recipients=[self.email])
+            recipients=["richi.lightshadow@gmail.com"])
+        #print(msg)
+        mail.send(msg)
+
 
 class OrdersAdmin(ModelViewModified):
     #base table

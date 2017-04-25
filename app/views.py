@@ -40,6 +40,8 @@ class PriceAdmin(ModelViewModified):
     #base order in the beginning
     #base_order = ('id', 'product.name', 'date', 'price')
 
+    page_size = 100
+
     @expose('/sendmail')
     def sendmail(self):
 
@@ -79,6 +81,8 @@ class ProductAdmin(ModelViewModified):
     #title of editform
     edit_title = _('Product Edit')
 
+    page_size = 100
+
 # class ProductNoAdmin(ProductAdmin):
 #     #columns not editable
 #     base_permissions = ['can_list']
@@ -107,6 +111,8 @@ class CategoryAdmin(ModelViewModified):
     #title of editform
     edit_title = _('Category Edit')
 
+    page_size = 100
+
 # class CategoryNoAdmin(CategoryAdmin):
 #     #columns not editable
 #     base_permissions = ['can_list']
@@ -133,15 +139,15 @@ class OrderlineAdmin(ModelViewModified):
     #same AJAX-fields for edit as for add
     edit_form_extra_fields = add_form_extra_fields
     #columns shown in listview
-    list_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'number', 'total_price', 'comment']
+    list_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'units', 'total_cost', 'comment']
     #how the list is ordered
-    order_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'number', 'total_price', 'comment']
+    order_columns = ['category.name', 'product.name', 'pricePerUnit.price', 'units', 'total_cost', 'comment']
     #columns in the addform
     add_columns = ['order', 'category', 'product', 'number', 'comment']
     #columns in the editform
     edit_columns = ['order', 'category', 'product', 'number', 'comment']
     #columns in the showform
-    show_columns = ['id', 'order', 'category', 'product', 'pricePerUnit', 'number', 'total_price', 'comment']
+    show_columns = ['id', 'order', 'category', 'product', 'pricePerUnit', 'units', 'total_cost', 'comment']
     #title of showform
     show_title = _('Orderline Details')
     #title of addform
@@ -149,35 +155,15 @@ class OrderlineAdmin(ModelViewModified):
     #title of editform
     edit_title = _('Orderline Edit')
 
-    @action("export_pdf","Export data to PDF","Do you really want to","fa-rocket")
+    page_size = 10000
+
+    page_size = 100
+
+    @action("export_pdf","Export data to PDF", "Do you want to?","fa-rocket", multiple=True, single=False)
     def export_pdf(self, item):
-        for i in item:
-            #createOrderList erstellt zu dem item i eine Liste[0][5]
-            print(i.createOrderDict())
-        return redirect(self.get_redirect())
 
-    @action("create_mail", "Create the Mail for the Order", "Do you really want to", "fa-rocket")
-    def create_mail(self, item):
-        client = db.engine.execute('select client from table_supplier ').first()
-        #fehlt noch
-        #sender = db.engine.execute('select ??? from table_supplier')
-        recipients = db.engine.execute('select email from table_supplier').first()
-        print(client)
-
-        mailText ='Sehr geehrter' + client + ',\nText... folgende Produkte'
-        #mail = Mail(app)
-
-
-        for i in item:
-            productDic = i.createOrderDict()
-            # createOrderList erstellt zu dem item i eine Liste[0][5]
-            #print(i.createOrderDict())
-
-        msg = Message(mailText,
-                      sender="cs14.test@web.de",
-                      recipients=["richi.lightshadow@gmail.com"])
-        #mail.send(msg)
-        return redirect(self.get_redirect())
+        PrintOrder(item).pdf_export()
+        return redirect(request.referrer)
 
     def write_sum(self, numberTotal, priceTotal, id):
     #writes the sums of number and prices of table orderline into table orders
@@ -186,34 +172,98 @@ class OrderlineAdmin(ModelViewModified):
         #write into database
         db.engine.execute(sqlUpdate, numberTotal=numberTotal, priceTotal=priceTotal, id=id)
 
-    @action("refresh_prices","Refresh prices","Do you really want to?","fa-rocket")
+    @action("refresh_prices","Refresh prices", "Do you want to?", single=False)
     def refresh_prices(self, item):
     #writes the appropriate price from table_price with the newest date into table_orderline
-        #summing up variables for calculate_total function
+
+        #if the view is empty exit
+        if not item:
+            return redirect(request.referrer)
+
+        #variables for write_sum function
         numberTotal = 0
         priceTotal = 0
 
         for line in item:
             #create a sql-query object
-            sqlSelect = text('select * from table_price where productId= :productId order by date desc limit 1')
+            sqlSelect = text('select id from table_price where productId= :productId order by date desc limit 1')
             #get one line from sql-query as a dictionary
             newestPriceId = db.engine.execute(sqlSelect, productId=line.productId).first()
             #create another sql-query object
-            sqlUpdate = text('update table_orderline set priceId= :priceId where id = :id')
-            #write into database
-            db.engine.execute(sqlUpdate, priceId=newestPriceId["id"], id=line.id)
+            try:
+            #there must be a price for the product
+                sqlUpdate = text('update table_orderline set priceId= :priceId where id = :id')
+                #write priceId into database
+                db.engine.execute(sqlUpdate, priceId=newestPriceId["id"], id=line.id)
+            except:
+            #there is no price for the product
+                print("Es gab einen Fehler beim Sql Update des neuesten Preises für "
+                      + line.product.category.name + " - " + line.product.name + ". " +
+                      "Wahrscheinlich ist für das Produkt kein Preis vorhanden.")
 
-            #summing up some data
+            #summing up some data for function write_sum to calculate the overall number and cost
             if type(line.number) == float:
                 numberTotal += line.number
             if type(line.total_price()) == float:
                priceTotal += line.total_price()
-        self.write_sum(numberTotal, priceTotal, item[0].orderId)
+
+        self.write_sum(numberTotal, priceTotal, item[0].id)
         return redirect(request.referrer)
 
 # class OrderlineNoAdmin(OrderlineAdmin):
 #     #columns not editable
 #     base_permissions = ['can_list']
+
+class PrintOrder():
+    #delivers all data of one order and a pdf export and mail function
+
+    def __init__(self, item):
+        #the information about the supplier and the order
+        baseItem = item[0]
+        self.client = baseItem.order.supplier.client
+        self.address = baseItem.order.supplier.address
+        self.telephone = baseItem.order.supplier.telephone
+        self.email = baseItem.order.supplier.email
+        self.emailText = baseItem.order.supplier.emailText
+        self.comment = baseItem.order.supplier.comment
+        self.target_date = baseItem.order.target_date
+        self.target_time = baseItem.order.target_time
+        self.total_number = baseItem.order.total_number
+        self.total_price = baseItem.order.total_price
+
+        #the orders in detail
+        self.orders = []
+        for line in item:
+            orderLine = {}
+            orderLine["category"] = line.product.category.name
+            orderLine["product"] = line.product.name
+            if type(line.number) == float:
+                orderLine["number"] = line.number
+            else:
+                #do not integrate orders without number
+                continue
+            if type(line.total_price()) == float:
+                orderLine["total_price"] = line.total_price()
+            else:
+                #if type is None then integrate the empty string
+                orderLine["total_price"] = ""
+            self.orders.append(orderLine)
+
+    def simplePrint(self):
+        print(self.client)
+        print(self.address)
+        print(self.telephone)
+        print(self.email)
+        print(self.emailText)
+        print(self.comment)
+        print(self.target_date)
+        print(self.target_time)
+        print(self.total_number)
+        print(self.total_price)
+        print(self.orders)
+
+    def pdf_export(self):
+        self.simplePrint()
 
 class OrdersAdmin(ModelViewModified):
     #base table
@@ -240,8 +290,9 @@ class OrdersAdmin(ModelViewModified):
     edit_title = _('Orders Edit')
     #title of the list
     list_title = _('OrdersAdmin')
+
     #how many entries are shown on one page
-    page_size = 10
+    page_size = 100
     #base order in the beginning
     #base_order = ('supplier.client', 'target_date')
 
@@ -272,6 +323,8 @@ class SupplierAdmin(ModelViewModified):
     add_title = _('Supplier Add')
     #title of editform
     edit_title = _('Supplier Edit')
+
+    page_size = 100
 
 # class SupplierNoAdmin(SupplierAdmin):
 #     #columns not editable

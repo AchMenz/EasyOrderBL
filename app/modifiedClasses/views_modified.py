@@ -3,8 +3,6 @@ from flask.ext.appbuilder.baseviews import expose, expose_api
 from flask.ext.appbuilder.security.decorators import has_access
 from .baseviews_modified import BaseCRUDViewModified
 
-print ("views_modified")
-
 class RestCRUDViewModified(RestCRUDView, BaseCRUDViewModified):
     def _get_modelview_urls(self, modelview_urls=None):
         view_name = self.__class__.__name__

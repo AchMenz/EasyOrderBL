@@ -153,7 +153,30 @@ class OrderlineAdmin(ModelViewModified):
     def export_pdf(self, item):
         for i in item:
             #createOrderList erstellt zu dem item i eine Liste[0][5]
-            print(i.createOrderList())
+            print(i.createOrderDict())
+        return redirect(self.get_redirect())
+
+    @action("create_mail", "Create the Mail for the Order", "Do you really want to", "fa-rocket")
+    def create_mail(self, item):
+        client = db.engine.execute('select client from table_supplier ').first()
+        #fehlt noch
+        #sender = db.engine.execute('select ??? from table_supplier')
+        recipients = db.engine.execute('select email from table_supplier').first()
+        print(client)
+
+        mailText ='Sehr geehrter' + client + ',\nText... folgende Produkte'
+        #mail = Mail(app)
+
+
+        for i in item:
+            productDic = i.createOrderDict()
+            # createOrderList erstellt zu dem item i eine Liste[0][5]
+            #print(i.createOrderDict())
+
+        msg = Message(mailText,
+                      sender="cs14.test@web.de",
+                      recipients=["richi.lightshadow@gmail.com"])
+        #mail.send(msg)
         return redirect(self.get_redirect())
 
     def write_sum(self, numberTotal, priceTotal, id):

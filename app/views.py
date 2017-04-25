@@ -165,6 +165,12 @@ class OrderlineAdmin(ModelViewModified):
         PrintOrder(item).pdf_export()
         return redirect(request.referrer)
 
+    @action("create_mail", "create mail from data", "Do you want to?", "fa-rocket", multiple=True, single=False)
+    def export_pdf(self, item):
+
+        PrintOrder(item).pdf_export()
+        return redirect(request.referrer)
+
     def write_sum(self, numberTotal, priceTotal, id):
     #writes the sums of number and prices of table orderline into table orders
         #create a sql-query object

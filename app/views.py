@@ -36,22 +36,11 @@ class PriceAdmin(ModelViewModified):
     #title of the list
     list_title = _('PriceAdmin')
     #how many entries are shown on one page
-    page_size = 10
+
     #base order in the beginning
-    #base_order = ('id', 'product.name', 'date', 'price')
+    base_order = ('date', 'desc')
 
     page_size = 100
-
-    @expose('/sendmail')
-    def sendmail(self):
-
-        mail = Mail(app)
-
-        msg = Message("Hello World",
-                      sender="cs14.test@web.de",
-                      recipients=["richi.lightshadow@gmail.com"])
-        mail.send(msg)
-        return 'Hello World!'
 
 # class PriceNoAdmin(PriceAdmin):
 #     #columns not editable
@@ -83,6 +72,8 @@ class ProductAdmin(ModelViewModified):
 
     page_size = 100
 
+    base_order = ('category.name', 'asc')
+
 # class ProductNoAdmin(ProductAdmin):
 #     #columns not editable
 #     base_permissions = ['can_list']
@@ -112,6 +103,8 @@ class CategoryAdmin(ModelViewModified):
     edit_title = _('Category Edit')
 
     page_size = 100
+
+    base_order = ('name', 'asc')
 
 # class CategoryNoAdmin(CategoryAdmin):
 #     #columns not editable
@@ -155,9 +148,9 @@ class OrderlineAdmin(ModelViewModified):
     #title of editform
     edit_title = _('Orderline Edit')
 
-    page_size = 10000
+    page_size = 1000
 
-    page_size = 100
+    base_order = ('category.name', 'asc')
 
     @action("export_pdf","Export data to PDF", "Do you want to?","fa-rocket", multiple=True, single=False)
     def export_pdf(self, item):
@@ -195,25 +188,52 @@ class OrderlineAdmin(ModelViewModified):
             sqlSelect = text('select id from table_price where productId= :productId order by date desc limit 1')
             #get one line from sql-query as a dictionary
             newestPriceId = db.engine.execute(sqlSelect, productId=line.productId).first()
-            #create another sql-query object
-            try:
-            #there must be a price for the product
-                sqlUpdate = text('update table_orderline set priceId= :priceId where id = :id')
-                #write priceId into database
-                db.engine.execute(sqlUpdate, priceId=newestPriceId["id"], id=line.id)
-            except:
-            #there is no price for the product
-                print("Es gab einen Fehler beim Sql Update des neuesten Preises für "
-                      + line.product.category.name + " - " + line.product.name + ". " +
-                      "Wahrscheinlich ist für das Produkt kein Preis vorhanden.")
+            newPriceExists = False
+
+            if line.pricePerUnit != None:
+                if (newestPriceId["id"]) != line.pricePerUnit.id:
+                    # create another sql-query object
+                    try:
+                        # there must be a price for the product
+                        sqlUpdate = text('update table_orderline set priceId= :priceId where id = :id')
+                        # write priceId into database
+                        db.engine.execute(sqlUpdate, priceId=newestPriceId["id"], id=line.id)
+                        newPriceExists = True
+                        #get newest price
+                        sqlSelectPrice = text('select price from table_price where id= :newestPriceId')
+                        newestPrice = db.engine.execute(sqlSelectPrice, newestPriceId=newestPriceId["id"]).first()
+                    except:
+                        # there is no price for the product
+                        print("Es gab einen Fehler beim Sql Update des neuesten Preises für "
+                              + line.product.category.name + " - " + line.product.name + ". " +
+                              "Wahrscheinlich ist für das Produkt kein Preis vorhanden.")
+            else:
+                # create another sql-query object
+                try:
+                #there must be a price for the product
+                    sqlUpdate = text('update table_orderline set priceId= :priceId where id = :id')
+                    #write priceId into database
+                    db.engine.execute(sqlUpdate, priceId=newestPriceId["id"], id=line.id)
+                    newPriceExists = True
+                    # get newest price
+                    sqlSelectPrice = text('select price from table_price where id= :newestPriceId')
+                    newestPrice = db.engine.execute(sqlSelectPrice, newestPriceId=newestPriceId["id"]).first()
+                except:
+                #there is no price for the product
+                    print("Es gab einen Fehler beim Sql Update des neuesten Preises für "
+                          + line.product.category.name + " - " + line.product.name + ". " +
+                          "Wahrscheinlich ist für das Produkt kein Preis vorhanden.")
 
             #summing up some data for function write_sum to calculate the overall number and cost
             if type(line.number) == float:
                 numberTotal += line.number
-            if type(line.total_price()) == float:
-               priceTotal += line.total_price()
+                if newPriceExists:
+                    priceTotal += round(newestPrice["price"] * line.number, 2)
+                else:
+                    if type(line.total_price()) == float:
+                        priceTotal += line.total_price()
 
-        self.write_sum(numberTotal, priceTotal, item[0].id)
+        self.write_sum(numberTotal, priceTotal, item[0].orderId)
         return redirect(request.referrer)
 
 # class OrderlineNoAdmin(OrderlineAdmin):
@@ -231,7 +251,8 @@ class PrintOrder():
         self.telephone = baseItem.order.supplier.telephone
         self.email = baseItem.order.supplier.email
         self.emailText = baseItem.order.supplier.emailText
-        self.comment = baseItem.order.supplier.comment
+        self.emailSubject = baseItem.order.supplier.emailSubject
+        self.comment = baseItem.order.comment
         self.target_date = baseItem.order.target_date
         self.target_time = baseItem.order.target_time
         self.total_number = baseItem.order.total_number
@@ -243,6 +264,7 @@ class PrintOrder():
             orderLine = {}
             orderLine["category"] = line.product.category.name
             orderLine["product"] = line.product.name
+            orderLine["comment"] = line.comment
             if type(line.number) == float:
                 orderLine["number"] = line.number
             else:
@@ -274,18 +296,19 @@ class PrintOrder():
     def send_mail(self):
         mail = Mail(app)
 
-        mailOrderText = "\n\n" + "Category" + "\t" + "|" + "\t" + "Product" + "\t" + "|" + "\t" + "Number" + "\t" + "|" + "\t" + "total Price"
-
+        mailOrderText = "\n\n"
         for line in self.orders:
-            mailOrderText += "\n" + line["category"] + "\t" + "|" + "\t" + line["product"] + "\t" + "|" + "\t" + str(line["number"]) + "\t" + "|" + "\t" + str(line["total_price"])
+            mailOrderText += "{0:8.2f} - ".format(line["number"]) + line["category"] + "_" + line["product"] + \
+                             "... " + line["comment"] + "\n"
+        mailOrderText += "\n" + self.comment
 
-        msg = Message("Order to " + str(self.target_date),
+        msg = Message(self.emailSubject + ", " + str(self.target_date) + " " + self.target_time,
             body=self.emailText + mailOrderText,
-            sender="cs14.test@web.de",
-            #recipients=[self.email])
-            recipients=["richi.lightshadow@gmail.com"])
-        #print(msg)
-        mail.send(msg)
+            sender="broyjoerg@web.de",
+            recipients=[self.email])
+
+        print(msg)
+        #mail.send(msg)
 
 
 class OrdersAdmin(ModelViewModified):
@@ -294,17 +317,17 @@ class OrdersAdmin(ModelViewModified):
     #the related view (subtable that is in relation)
     related_views = [OrderlineAdmin]
     # columns for label
-    label_columns = {'supplier.client':_('Supplier'), 'target_date':_('Target date'), 'total_number':_('Total number'), 'total_price':_('Total price'),'supplier':_('Supplier')}
+    label_columns = {'supplier.client':_('Supplier'), 'target_date':_('Target date'), 'total_number':_('Total number'), 'tot_price':_('Total price'),'supplier':_('Supplier')}
     #columns shown in listview
-    list_columns = ['supplier.client', 'target_date', 'total_number', 'total_price']
+    list_columns = ['supplier.client', 'target_date', 'total_number', 'tot_price']
     #how the list is ordered
-    order_columns = ['supplier.client', 'target_date', 'target_time', 'total_number', 'total_price']
+    order_columns = ['supplier.client', 'target_date', 'target_time', 'total_number', 'tot_price']
     #columns in the addform
     add_columns = ['supplier', 'target_date', 'target_time', 'comment']
     #columns in the editform
     edit_columns = ['supplier', 'target_date', 'target_time', 'comment']
     #columns in the showform
-    show_columns = ['id', 'supplier.client', 'target_date', 'target_time', 'total_number', 'total_price', 'comment']
+    show_columns = ['id', 'supplier.client', 'target_date', 'target_time', 'total_number', 'tot_price', 'comment']
     #title of showform
     show_title = _('Orders Details')
     #title of addform
@@ -316,8 +339,9 @@ class OrdersAdmin(ModelViewModified):
 
     #how many entries are shown on one page
     page_size = 100
+
     #base order in the beginning
-    #base_order = ('supplier.client', 'target_date')
+    base_order = ('target_date', 'desc')
 
 # class OrdersNoAdmin(OrdersAdmin):
 #     #columns not editable
@@ -335,11 +359,11 @@ class SupplierAdmin(ModelViewModified):
     #how the list is ordered
     order_columns = ['client', 'email', 'id']
     #columns in the addform
-    add_columns = ['client', 'address', 'telephone', 'email', 'emailText', 'comment']
+    add_columns = ['client', 'address', 'telephone', 'email', 'emailText', 'emailSubject', 'comment']
     #columns in the editform
-    edit_columns = ['client', 'address', 'telephone', 'email', 'emailText', 'comment']
+    edit_columns = ['client', 'address', 'telephone', 'email', 'emailText', 'emailSubject', 'comment']
     #columns in the showform
-    show_columns = ['id', 'client', 'address', 'telephone', 'email', 'emailText', 'comment']
+    show_columns = ['id', 'client', 'address', 'telephone', 'email', 'emailText', 'emailSubject', 'comment']
     #title of showform
     show_title = _('Supplier Details')
     #title of addform
@@ -348,6 +372,8 @@ class SupplierAdmin(ModelViewModified):
     edit_title = _('Supplier Edit')
 
     page_size = 100
+
+    base_order = ('client', 'asc')
 
 # class SupplierNoAdmin(SupplierAdmin):
 #     #columns not editable

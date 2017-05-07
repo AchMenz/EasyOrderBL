@@ -3,7 +3,7 @@
 from flask.ext.appbuilder import Model
 from flask.ext.appbuilder.models.decorators import renders
 from flask.ext.appbuilder.models.mixins import AuditMixin, FileColumn, ImageColumn
-from sqlalchemy import Column, Integer, String, ForeignKey, Unicode, Float, Date, Time, Text
+from sqlalchemy import Column, Integer, String, ForeignKey, Unicode, Float, Date, Time, Text, Boolean
 from sqlalchemy.orm import relationship
 from flask import Markup, url_for
 """
@@ -14,7 +14,7 @@ AuditMixin will add automatic timestamp of created and modified by who
 
 
 """
-        
+
 # Table of all Suppliers
 class table_supplier(Model, AuditMixin):
     id = Column(Integer, primary_key=True)
@@ -23,14 +23,12 @@ class table_supplier(Model, AuditMixin):
     telephone = Column(String(255))
     email =  Column(Unicode(255), nullable=False, server_default=u'', unique=True)
     emailText = Column(Text, nullable=False)
+    emailSubject = Column(String(255),nullable=False)
     comment = Column(Text)
 
     #gibt eine Bezeichnung aus, unter der der Datensatz angezeigt wird
     def __repr__(self):
         return self.client
-
-#    def click_row(self):
-#        return Markup('<a href="' + url_for('OrdersAdmin.show',pk=str(self.id)) + '">self.client</a>')
 
 # Table of all Orders
 # reference to Supplier
@@ -47,6 +45,14 @@ class table_orders(Model, AuditMixin):
     #gibt eine Bezeichnung aus, unter der der Datensatz angezeigt wird
     def __repr__(self):
         return str(self.id) + ", " + str(self.target_date)
+
+    #returns the total price rounded
+    @renders('total_price')
+    def tot_price (self):
+        if self.total_price is None:
+            return None
+        else:
+            return round(self.total_price, 2)
 
 # Table for the categories.
 class table_category(Model, AuditMixin):

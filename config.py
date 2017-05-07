@@ -103,5 +103,5 @@ MAIL_SERVER = 'smtp.web.de'
 MAIL_PORT = 587
 
 MAIL_USERNAME = 'broyjoerg@web.de'
-MAIL_PASSWORD = 'raxilos66'
+MAIL_PASSWORD = 'blabla'
 MAIL_USE_TLS = True

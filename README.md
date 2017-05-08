@@ -2,15 +2,15 @@
 ## Installation
 Commandline:
 
-    mkdir UniBestFlaskAB
-    cd UniBestFlaskAB
+    mkdir EasyOrderBLMain
+    cd EasyOrderBLMain
     virtualenv .
     . bin/activate
     pip3 install flask-appbuilder
     
     git clone https://github.com/AchimMenzel/EasyOrderBL.git
     
-    cd UniversalOrderProgramFlaskAB
+    cd EasyOrderBL
     fabmanager create-admin
     
 Interactive:

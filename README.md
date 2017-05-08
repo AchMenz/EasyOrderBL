@@ -46,3 +46,9 @@ Commandline:
 Commandline:
 
     fabmanager run
+## navigate to app
+Browser (depending on run.py):
+    
+    127.0.0.1:8080
+    or:
+    localhost:8080

@@ -1,5 +1,6 @@
 # Universal Order Program with Flask-Appbuilder
 ## Installation
+Kommandozeile:
 
     mkdir UniBestFlaskAB
     cd UniBestFlaskAB
@@ -12,21 +13,36 @@
     cd UniversalOrderProgramFlaskAB
     fabmanager create-admin
     
+dort interaktiv:
+
     Username [admin]: admin
     User first name [admin]: Test
     User last name [admin]: Admin
     Email [admin@fab.org]: test@mail.com
     Password: password
     Repeat for confirmation: password
-       
-## Run
 
-    fabmanager run
+### Datenbank mit Beispieldaten füllen
+Kommandozeile:
 
-In der Datei "run.py" kann der Host und der Port angepasst werden.
+    sqlite3 app.db < app/scratch/SqlInsert.sql
+
+### In "run.py" Host und Port anpassen
     
     app.run(host='127.0.0.1', port=8080, debug=True)
 
-## Datenbank füllen
+### In "config.py" Daten für Emailversand anpassen
 
-    sqlite3 app.db < app/scratch/SqlInsert.sql
+    #Email provider details
+    MAIL_SERVER = 'smtp.web.de'
+    MAIL_PORT = 587
+
+    #Email credentials
+    MAIL_USERNAME = 'blabla@aol.com'
+    MAIL_PASSWORD = 'blabla'
+    MAIL_USE_TLS = True
+
+## Run
+Kommandozeile:
+
+    fabmanager run

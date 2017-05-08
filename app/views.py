@@ -169,9 +169,11 @@ class OrderlineAdmin(ModelViewModified):
     #action function to send email
     @action("send_mail", "Send mail with this order", "Do you want to?", "fa-rocket", multiple=True, single=False)
     def create_mail(self, item):
-
-        msg = PrintOrder(item).send_mail()
-        return render_template('emailSuccess.html', base_template=appbuilder.base_template, appbuilder=appbuilder, msg=msg), 200
+        try:
+            msg = PrintOrder(item).send_mail()
+            return render_template('emailSuccess.html', base_template=appbuilder.base_template, appbuilder=appbuilder, msg=msg), 200
+        except:
+            return render_template('emailFailure.html', base_template=appbuilder.base_template, appbuilder=appbuilder), 500
 
     def write_sum(self, numberTotal, priceTotal, id):
     #writes the sums of number and prices of table orderline into table orders

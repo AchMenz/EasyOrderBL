@@ -1,4 +1,4 @@
-# Universal Order Program with Flask-Appbuilder
+# Universal Order Program "EasyOrderBL" with Flask-Appbuilder
 ## Installation
 Kommandozeile:
 
@@ -8,7 +8,7 @@ Kommandozeile:
     . bin/activate
     pip3 install flask-appbuilder
     
-    git clone https://github.com/AchimMenzel/UniversalOrderProgramFlaskAB.git
+    git clone https://github.com/AchimMenzel/EasyOrderBL.git
     
     cd UniversalOrderProgramFlaskAB
     fabmanager create-admin

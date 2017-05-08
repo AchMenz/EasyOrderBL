@@ -1,0 +1,33 @@
+{% extends "appbuilder/base.html" %}
+
+{% block content %}
+<div class="alert alert-success" role="alert">{{_('Email successfully sent!')}}</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <td>{{_('To')}}: </td>
+            <td>{{ msg.recipients[0] }}</td>
+        </tr>
+        <tr>
+            <td>{{_('From')}}: </td>
+            <td>{{ msg.sender }}</td>
+        </tr>
+        <tr>
+            <td>{{_('Subject')}}: </td>
+            <td>{{ msg.subject }}</td>
+        </tr>
+        <tr>
+            <td>{{_('Body')}}: </td>
+            <td><pre style="color: #555555; font-family: 'Source Sans Pro', 'Helvetica Neue',Helvetica,Arial,sans-serif;
+                    font-size: 14px; line-height: 1.42857; border: 0 solid #cccccc;
+                    border-radius: 0;
+                    display: block;
+                    margin: 0;
+                    overflow-wrap: break-word;
+                    padding: 0;
+                    word-break: break-all;
+                    background-color: #ffffff;">{{ msg.body }}</pre></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

@@ -15,6 +15,8 @@ from sqlalchemy import text
 class PriceAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_price)
+    # title for the listview
+    list_title = _('Prices')
     #columns for label
     label_columns = {'product.name':_('Product'),'product':_('Product'),'date':_('Date'), 'price':_('Price')}
     #columns shown in listview
@@ -49,6 +51,8 @@ class PriceAdmin(ModelViewModified):
 class ProductAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_product)
+    # title for the listview
+    list_title = _('Products')
     # columns for label
     label_columns = {'category.name':_('Category'),'category':_('Category'),'name':_('Product Name')}
     #the related view (subtable that is in relation)
@@ -83,6 +87,8 @@ class CategoryAdmin(ModelViewModified):
     datamodel = SQLAInterface(table_category)
     # columns for label
     label_columns = {'name':_('Category')}
+    # title for the listview
+    list_title = _('Categories')
     #the related view (subtable that is in relation)
     related_views = [ProductAdmin]
     #columns shown in listview
@@ -113,6 +119,8 @@ class CategoryAdmin(ModelViewModified):
 class OrderlineAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_orderline)
+    # title for the listview
+    list_title = _('Orderlines')
     # columns for label
     label_columns = {'category.name': _('Category'),'product.name':_('Product'), 'pricePerUnit.price':_('Price per Unit'),'number':_('Units'),'total_cost':_('Cost'),'comment':_('Comment'),'category':_('Category'),'order':_('Order'), 'units':_('Units')}
     #special AJAX-fields
@@ -152,17 +160,18 @@ class OrderlineAdmin(ModelViewModified):
 
     base_order = ('category.name', 'asc')
 
-    @action("export_pdf","Export data to PDF", "Do you want to?","fa-rocket", multiple=True, single=False)
-    def export_pdf(self, item):
+    #@action("export_pdf","Export data to PDF", "Do you want to?","fa-rocket", multiple=True, single=False)
+    #def export_pdf(self, item):
 
-        PrintOrder(item).pdf_export()
-        return redirect(request.referrer)
+        #PrintOrder(item).pdf_export()
+        #return redirect(request.referrer)
 
-    @action("create_mail", "create mail from data", "Do you want to?", "fa-rocket", multiple=True, single=False)
+    #action function to send email
+    @action("send_mail", "Send mail with this order", "Do you want to?", "fa-rocket", multiple=True, single=False)
     def create_mail(self, item):
 
-        PrintOrder(item).send_mail()
-        return redirect(request.referrer)
+        msg = PrintOrder(item).send_mail()
+        return render_template('emailSuccess.html', base_template=appbuilder.base_template, appbuilder=appbuilder, msg=msg), 200
 
     def write_sum(self, numberTotal, priceTotal, id):
     #writes the sums of number and prices of table orderline into table orders
@@ -171,7 +180,8 @@ class OrderlineAdmin(ModelViewModified):
         #write into database
         db.engine.execute(sqlUpdate, numberTotal=numberTotal, priceTotal=priceTotal, id=id)
 
-    @action("refresh_prices","Refresh prices", "Do you want to?", single=False)
+    #action function to update prices of the goods of the displayed order
+    @action("update_prices","Update prices", "Do you want to?", "fa-rocket", single=False)
     def refresh_prices(self, item):
     #writes the appropriate price from table_price with the newest date into table_orderline
 
@@ -278,6 +288,7 @@ class PrintOrder():
             self.orders.append(orderLine)
 
     def simplePrint(self):
+        #simply demonstrate the attributes
         print(self.client)
         print(self.address)
         print(self.telephone)
@@ -291,11 +302,14 @@ class PrintOrder():
         print(self.orders)
 
     def pdf_export(self):
+        #to be implemented
         self.simplePrint()
 
     def send_mail(self):
+        #sends an email to a certain recipient
         mail = Mail(app)
 
+        #build the body of the email
         mailOrderText = "\n\n"
         for line in self.orders:
             mailOrderText += "{0:8.2f} - ".format(line["number"]) + line["category"] + "_" + line["product"] + \
@@ -307,8 +321,9 @@ class PrintOrder():
             sender="broyjoerg@web.de",
             recipients=[self.email])
 
-        print(msg)
-        #mail.send(msg)
+        #print(msg)
+        mail.send(msg)
+        return msg
 
 
 class OrdersAdmin(ModelViewModified):
@@ -316,6 +331,8 @@ class OrdersAdmin(ModelViewModified):
     datamodel = SQLAInterface(table_orders)
     #the related view (subtable that is in relation)
     related_views = [OrderlineAdmin]
+    # title for the listview
+    list_title = _('Orders')
     # columns for label
     label_columns = {'supplier.client':_('Supplier'), 'target_date':_('Target date'), 'total_number':_('Total number'), 'tot_price':_('Total price'),'supplier':_('Supplier')}
     #columns shown in listview
@@ -352,6 +369,8 @@ class SupplierAdmin(ModelViewModified):
     datamodel = SQLAInterface(table_supplier)
     #the related view (subtable that is in relation)
     related_views = [OrdersAdmin]
+    # title for the listview
+    list_title = _('Suppliers')
     # columns for label
     label_columns = {'client':_('Client'),'email':_('Email'),'address':_('Adress'),'telephone':_('Telephone'),'email':_('Email adress'),'emailText':_('Email Text')}
     #columns shown in listview

@@ -99,9 +99,11 @@ IMG_UPLOAD_URL = '/static/uploads/'
 #APP_THEME = "yeti.css"
 APP_THEME = "lumen.css"
 
+#Email provider details
 MAIL_SERVER = 'smtp.web.de'
 MAIL_PORT = 587
 
-MAIL_USERNAME = 'broyjoerg@web.de'
+#Email credentials
+MAIL_USERNAME = 'email@aol.com'
 MAIL_PASSWORD = 'blabla'
 MAIL_USE_TLS = True

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-08 07:48+0100\n"
+"POT-Creation-Date: 2017-05-08 08:29+0100\n"
 "PO-Revision-Date: 2017-05-08 07:08+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -18,208 +18,166 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: app/views.py:19 app/views.py:117 app/views.py:392
-msgid "Product"
-msgstr "Produkt"
-
-#: app/views.py:19
-msgid "Date"
-msgstr "Datum"
-
-#: app/views.py:19
-msgid "Price"
-msgstr "Preis"
-
-#: app/views.py:31
-msgid "Price Details"
-msgstr "Preisdetails"
-
-#: app/views.py:33
-msgid "Price Add"
-msgstr "Preis hinzufügen"
-
-#: app/views.py:35
-msgid "Price Edit"
-msgstr "Preis bearbeiten"
-
-#: app/views.py:37
-msgid "PriceAdmin"
-msgstr "Preis Admin"
-
-#: app/views.py:53 app/views.py:85 app/views.py:117 app/views.py:391
-msgid "Category"
-msgstr "Kategorie"
-
-#: app/views.py:53
-msgid "Product Name"
-msgstr "Produktname"
-
-#: app/views.py:67
-msgid "Product Details"
-msgstr "Produktdetails"
-
-#: app/views.py:69
-msgid "Product Add"
-msgstr "Produkt hinzufügen"
-
-#: app/views.py:71
-msgid "Product Edit"
-msgstr "Produkt bearbeiten"
-
-#: app/views.py:99
-msgid "Category Details"
-msgstr "Kategoriedetails"
-
-#: app/views.py:101
-msgid "Category Add"
-msgstr "Kategorie hinzufügen"
-
-#: app/views.py:103
-msgid "Category Edit"
-msgstr "Kategorie bearbeiten"
-
-#: app/views.py:117
-msgid "Price per Unit"
-msgstr "Preis pro Einheit"
-
-#: app/views.py:117
-msgid "Units"
-msgstr "Einheiten"
-
-#: app/views.py:117
-msgid "Cost"
-msgstr "Kosten"
-
-#: app/views.py:117
-msgid "Comment"
-msgstr "Kommentar"
-
-#: app/views.py:117
-msgid "Order"
-msgstr "Bestellung"
-
-#: app/views.py:145
-msgid "Orderline Details"
-msgstr "Bestellungsdetails"
-
-#: app/views.py:147
-msgid "Orderline Add"
-msgstr "Bestellung hinzufügen"
-
-#: app/views.py:149
-msgid "Orderline Edit"
-msgstr "Bestellung bearbeiten"
-
-#: app/views.py:320 app/views.py:386
-msgid "Supplier"
-msgstr "Lieferant"
-
-#: app/views.py:320
-msgid "Target date"
-msgstr "Zieldatum"
-
-#: app/views.py:320
-msgid "Total number"
-msgstr "Gesamtanzahl"
-
-#: app/views.py:320
-msgid "Total price"
-msgstr "Gesamtpreis"
-
-#: app/views.py:332
-msgid "Orders Details"
-msgstr "Bestellungsdetails"
-
-#: app/views.py:334
-msgid "Orders Add"
-msgstr "Bestellung hinzufügen"
-
-#: app/views.py:336
-msgid "Orders Edit"
-msgstr "Bestellung bearbeiten"
-
-#: app/views.py:338
-msgid "OrdersAdmin"
-msgstr "Bestellung"
-
-#: app/views.py:356
-msgid "Client"
-msgstr "Lieferant"
-
-#: app/views.py:356
-msgid "Email"
-msgstr "Email"
-
-#: app/views.py:356
-msgid "Adress"
-msgstr "Adresse"
-
-#: app/views.py:356
-msgid "Telephone"
-msgstr "Telephon"
-
-#: app/views.py:356
-msgid "Email adress"
-msgstr "Email Adresse"
-
-#: app/views.py:356
-msgid "Email Text"
-msgstr "Emailtext"
-
-#: app/views.py:368
-msgid "Supplier Details"
-msgstr "Lieferantendetails"
-
-#: app/views.py:370
-msgid "Supplier Add"
-msgstr "Lieferant hinzufügen"
-
-#: app/views.py:372
-msgid "Supplier Edit"
-msgstr "Lieferant bearbeiten"
-
-#: app/views.py:386
-msgid "Orders"
-msgstr "Bestellungen"
-
-#: app/views.py:391 app/views.py:392
-msgid "Products"
-msgstr "Produkte"
-
-#: app/templates/404.html:4
-msgid "Page not found"
-msgstr "Seite nicht gefunden"
-
-#: app/templates/appbuilder/footer.html:2
-msgid "Questions? Ask:"
-msgstr "Fragen? Schreib:"
-
-#: app/templates/appbuilder/footer.html:2
-msgid "or"
-msgstr "oder"
 
 #: app/templates/appbuilder/index.html:4
-msgid "Welcome to UniBestAP"
-msgstr "Willkommen zu UniBestAP"
+msgid "Welcome to Easy Order BL"
+msgstr "Willkommen zu Easy Order BL"
 
 #: app/templates/appbuilder/index.html:7
 msgid ""
-"What is UniBestAP? UniBestAP is a tool where you and your suppliers can "
+"What is Easy Order BL? It is a tool where you and your suppliers can "
 "manage your orders. You can create new suppliers, create new orders, "
 "change old orders or execute orders."
-msgstr ""
-"Was ist UniBestAP? UniBestAP ist ein Werkzeug mit dem du und Deine "
-"Lieferanten Bestellungen bearbeiten könnt."
+msgstr "Was ist Easy Order BL? Easy Order BL ist ein Werkzeug, mit dem Du und Deine Lieferanten Bestellungen bearbeiten könnt."
 
-#: app/templates/appbuilder/index.html:8
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Price"
+msgstr "Preis"
+
+msgid "Price Details"
+msgstr "Preisdetails"
+
+msgid "Price Add"
+msgstr "Preis hinzufügen"
+
+msgid "Price Edit"
+msgstr "Preis bearbeiten"
+
+msgid "PriceAdmin"
+msgstr "Preis Admin"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Product Name"
+msgstr "Produktname"
+
+msgid "Product Details"
+msgstr "Produktdetails"
+
+msgid "Product Add"
+msgstr "Produkt hinzufügen"
+
+msgid "Product Edit"
+msgstr "Produkt bearbeiten"
+
+msgid "Category Details"
+msgstr "Kategoriedetails"
+
+msgid "Category Add"
+msgstr "Kategorie hinzufügen"
+
+msgid "Category Edit"
+msgstr "Kategorie bearbeiten"
+
+msgid "Price per Unit"
+msgstr "Preis pro Einheit"
+
+msgid "Units"
+msgstr "Einheiten"
+
+msgid "Cost"
+msgstr "Kosten"
+
+msgid "Comment"
+msgstr "Kommentar"
+
+msgid "Order"
+msgstr "Bestellung"
+
+msgid "Orderline Details"
+msgstr "Bestellungsdetails"
+
+msgid "Orderline Add"
+msgstr "Bestellung hinzufügen"
+
+msgid "Orderline Edit"
+msgstr "Bestellung bearbeiten"
+
+msgid "Supplier"
+msgstr "Lieferant"
+
+msgid "Target date"
+msgstr "Zieldatum"
+
+msgid "Total number"
+msgstr "Gesamtanzahl"
+
+msgid "Total price"
+msgstr "Gesamtpreis"
+
+msgid "Orders Details"
+msgstr "Bestellungsdetails"
+
+msgid "Orders Add"
+msgstr "Bestellung hinzufügen"
+
+msgid "Orders Edit"
+msgstr "Bestellung bearbeiten"
+
+msgid "OrdersAdmin"
+msgstr "Bestellung"
+
+msgid "Client"
+msgstr "Lieferant"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Adress"
+msgstr "Adresse"
+
+msgid "Telephone"
+msgstr "Telephon"
+
+msgid "Email adress"
+msgstr "Email Adresse"
+
+msgid "Email Text"
+msgstr "Emailtext"
+
+msgid "Supplier Details"
+msgstr "Lieferantendetails"
+
+msgid "Supplier Add"
+msgstr "Lieferant hinzufügen"
+
+msgid "Supplier Edit"
+msgstr "Lieferant bearbeiten"
+
+msgid "Orders"
+msgstr "Bestellungen"
+
+msgid "Products"
+msgstr "Produkte"
+
+msgid "Page not found"
+msgstr "Seite nicht gefunden"
+
+msgid "Questions? Ask:"
+msgstr "Fragen? Schreib:"
+
+msgid "or"
+msgstr "oder"
+
+msgid "Welcome to UniBestAP"
+msgstr "Willkommen zu UniBestAP"
+
+msgid ""
+msgstr ""
+
 msgid "Link to"
 msgstr "Link zur"
 
-#: app/templates/appbuilder/index.html:8
 msgid "source"
 msgstr "Quelle"
 
-#: app/templates/appbuilder/general/confirm.html:6
 msgid "User confirmation needed"
 msgstr "Nutzerauthentifizierung"
 

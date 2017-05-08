@@ -19,7 +19,7 @@ CSRF_ENABLED = True
 # GLOBALS FOR APP Builder 
 #------------------------------
 # Uncomment to setup Your App name
-APP_NAME = "Universal Order Webapp"
+APP_NAME = "Easy Order BL"
 
 # Uncomment to setup Setup an App icon
 #APP_ICON = "static/img/logo.jpg"

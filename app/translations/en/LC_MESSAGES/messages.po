@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-08 07:48+0100\n"
+"POT-Creation-Date: 2017-05-08 08:29+0100\n"
 "PO-Revision-Date: 2017-04-03 07:21+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -199,12 +199,12 @@ msgid "or"
 msgstr ""
 
 #: app/templates/appbuilder/index.html:4
-msgid "Welcome to UniBestAP"
+msgid "Welcome to Easy Order BL"
 msgstr ""
 
 #: app/templates/appbuilder/index.html:7
 msgid ""
-"What is UniBestAP? UniBestAP is a tool where you and your suppliers can "
+"What is Easy Order BL? It is a tool where you and your suppliers can "
 "manage your orders. You can create new suppliers, create new orders, "
 "change old orders or execute orders."
 msgstr ""
@@ -375,5 +375,11 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Supplier Edit"
+#~ msgstr ""
+
+#~ msgid "Units"
+#~ msgstr ""
+
+#~ msgid "Cost"
 #~ msgstr ""
 

@@ -6,7 +6,7 @@ Commandline:
     cd EasyOrderBLMain
     virtualenv .
     . bin/activate
-    pip3 install flask-appbuilder
+    pip3 install flask-appbuilder flask_mail
     
     git clone https://github.com/AchimMenzel/EasyOrderBL.git
     

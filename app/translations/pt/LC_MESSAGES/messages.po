@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 15:19+0100\n"
+"POT-Creation-Date: 2017-05-08 07:48+0100\n"
 "PO-Revision-Date: 2015-10-26 13:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pt\n"
@@ -19,171 +19,171 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: app/views.py:17 app/views.py:122 app/views.py:229
+#: app/views.py:19 app/views.py:117 app/views.py:392
 msgid "Product"
 msgstr ""
 
-#: app/views.py:17
+#: app/views.py:19
 msgid "Date"
 msgstr ""
 
-#: app/views.py:17 app/views.py:122 app/views.py:230
+#: app/views.py:19
 msgid "Price"
 msgstr ""
 
-#: app/views.py:29
+#: app/views.py:31
 msgid "Price Details"
 msgstr ""
 
-#: app/views.py:31
+#: app/views.py:33
 msgid "Price Add"
 msgstr ""
 
-#: app/views.py:33
+#: app/views.py:35
 msgid "Price Edit"
 msgstr ""
 
-#: app/views.py:35
+#: app/views.py:37
 msgid "PriceAdmin"
 msgstr ""
 
-#: app/views.py:65 app/views.py:94 app/views.py:122 app/views.py:228
+#: app/views.py:53 app/views.py:85 app/views.py:117 app/views.py:391
 msgid "Category"
 msgstr ""
 
-#: app/views.py:65
+#: app/views.py:53
 msgid "Product Name"
 msgstr ""
 
-#: app/views.py:79
+#: app/views.py:67
 msgid "Product Details"
 msgstr ""
 
-#: app/views.py:81
+#: app/views.py:69
 msgid "Product Add"
 msgstr ""
 
-#: app/views.py:83
+#: app/views.py:71
 msgid "Product Edit"
 msgstr ""
 
-#: app/views.py:108
+#: app/views.py:99
 msgid "Category Details"
 msgstr ""
 
-#: app/views.py:110
+#: app/views.py:101
 msgid "Category Add"
 msgstr ""
 
-#: app/views.py:112
+#: app/views.py:103
 msgid "Category Edit"
 msgstr ""
 
-#: app/views.py:122
+#: app/views.py:117
 msgid "Price per Unit"
 msgstr ""
 
-#: app/views.py:122
-msgid "Number"
+#: app/views.py:117
+msgid "Units"
 msgstr ""
 
-#: app/views.py:122
+#: app/views.py:117
+msgid "Cost"
+msgstr ""
+
+#: app/views.py:117
 msgid "Comment"
 msgstr ""
 
-#: app/views.py:122
+#: app/views.py:117
 msgid "Order"
 msgstr ""
 
-#: app/views.py:149
+#: app/views.py:145
 msgid "Orderline Details"
 msgstr ""
 
-#: app/views.py:151
+#: app/views.py:147
 msgid "Orderline Add"
 msgstr ""
 
-#: app/views.py:153
+#: app/views.py:149
 msgid "Orderline Edit"
 msgstr ""
 
-#: app/views.py:165 app/views.py:225
+#: app/views.py:320 app/views.py:386
 msgid "Supplier"
 msgstr ""
 
-#: app/views.py:165
+#: app/views.py:320
 msgid "Target date"
 msgstr ""
 
-#: app/views.py:165
+#: app/views.py:320
 msgid "Total number"
 msgstr ""
 
-#: app/views.py:165
+#: app/views.py:320
 msgid "Total price"
 msgstr ""
 
-#: app/views.py:177
+#: app/views.py:332
 msgid "Orders Details"
 msgstr ""
 
-#: app/views.py:179
+#: app/views.py:334
 msgid "Orders Add"
 msgstr ""
 
-#: app/views.py:181
+#: app/views.py:336
 msgid "Orders Edit"
 msgstr ""
 
-#: app/views.py:183
+#: app/views.py:338
 msgid "OrdersAdmin"
 msgstr ""
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Client"
 msgstr ""
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Email"
 msgstr ""
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Adress"
 msgstr ""
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Telephone"
 msgstr ""
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Email adress"
 msgstr ""
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Email Text"
 msgstr ""
 
-#: app/views.py:211
+#: app/views.py:368
 msgid "Supplier Details"
 msgstr ""
 
-#: app/views.py:213
+#: app/views.py:370
 msgid "Supplier Add"
 msgstr ""
 
-#: app/views.py:215
+#: app/views.py:372
 msgid "Supplier Edit"
 msgstr ""
 
-#: app/views.py:225 app/views.py:226 app/views.py:227
+#: app/views.py:386
 msgid "Orders"
 msgstr ""
 
-#: app/views.py:227
-msgid "Orderline"
-msgstr ""
-
-#: app/views.py:228 app/views.py:229 app/views.py:230
+#: app/views.py:391 app/views.py:392
 msgid "Products"
 msgstr ""
 
@@ -313,5 +313,68 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "PriceAdmin"
+#~ msgstr ""
+
+#~ msgid "Product Details"
+#~ msgstr ""
+
+#~ msgid "Product Add"
+#~ msgstr ""
+
+#~ msgid "Product Edit"
+#~ msgstr ""
+
+#~ msgid "Category Details"
+#~ msgstr ""
+
+#~ msgid "Category Add"
+#~ msgstr ""
+
+#~ msgid "Category Edit"
+#~ msgstr ""
+
+#~ msgid "Order"
+#~ msgstr ""
+
+#~ msgid "Orderline Details"
+#~ msgstr ""
+
+#~ msgid "Orderline Add"
+#~ msgstr ""
+
+#~ msgid "Orderline Edit"
+#~ msgstr ""
+
+#~ msgid "Orders Details"
+#~ msgstr ""
+
+#~ msgid "Orders Add"
+#~ msgstr ""
+
+#~ msgid "Orders Edit"
+#~ msgstr ""
+
+#~ msgid "OrdersAdmin"
+#~ msgstr ""
+
+#~ msgid "Adress"
+#~ msgstr ""
+
+#~ msgid "Telephone"
+#~ msgstr ""
+
+#~ msgid "Email adress"
+#~ msgstr ""
+
+#~ msgid "Email Text"
+#~ msgstr ""
+
+#~ msgid "Supplier Details"
+#~ msgstr ""
+
+#~ msgid "Supplier Add"
+#~ msgstr ""
+
+#~ msgid "Supplier Edit"
 #~ msgstr ""
 

@@ -114,7 +114,7 @@ class OrderlineAdmin(ModelViewModified):
     #base table
     datamodel = SQLAInterface(table_orderline)
     # columns for label
-    label_columns = {'category.name': _('Category'),'product.name':_('Product'), 'pricePerUnit.price':_('Price per Unit'),'number':_('Number'),'price':_('Price'),'comment':_('Comment'),'category':_('Category'),'order':_('Order')}
+    label_columns = {'category.name': _('Category'),'product.name':_('Product'), 'pricePerUnit.price':_('Price per Unit'),'number':_('Units'),'total_cost':_('Cost'),'comment':_('Comment'),'category':_('Category'),'order':_('Order'), 'units':_('Units')}
     #special AJAX-fields
     add_form_extra_fields = {
                     'category': AJAXSelectField('Category',
@@ -383,13 +383,13 @@ class SupplierAdmin(ModelViewModified):
 db.create_all()
 
 #register the views here
-appbuilder.add_view(SupplierAdmin, 'SupplierAdmin', category = 'Orders', label = _('Supplier'))
+appbuilder.add_view(SupplierAdmin, 'SupplierAdmin', category = 'Orders',category_label=_('Orders'), label = _('Supplier'))
 appbuilder.add_view_no_menu(OrdersAdmin)
 appbuilder.add_view_no_menu(OrderlineAdmin)
 #appbuilder.add_view(OrdersAdmin, 'OrdersAdmin', category = 'Orders', label = _('Orders'))
 #appbuilder.add_view(OrderlineAdmin, 'OrderlineAdmin', category = 'Orders', label = _('Orderline'))
-appbuilder.add_view(CategoryAdmin, 'CategoryAdmin', category = 'Products', label = _('Category'))
-appbuilder.add_view(ProductAdmin, 'ProductAdmin', category = 'Products', label = _('Product'))
+appbuilder.add_view(CategoryAdmin, 'CategoryAdmin', category = 'Products',category_label=_('Products'), label = _('Category'))
+appbuilder.add_view(ProductAdmin, 'ProductAdmin', category = 'Products',category_label=_('Products'), label = _('Product'))
 appbuilder.add_view_no_menu(PriceAdmin)
 #appbuilder.add_view(PriceAdmin, 'PriceAdmin', category = 'Products', label = _('Price'))
 

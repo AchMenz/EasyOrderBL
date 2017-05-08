@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 15:19+0100\n"
-"PO-Revision-Date: 2017-04-03 07:28+0100\n"
+"POT-Creation-Date: 2017-05-08 07:48+0100\n"
+"PO-Revision-Date: 2017-05-08 07:08+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -18,173 +18,173 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: app/views.py:17 app/views.py:122 app/views.py:229
+#: app/views.py:19 app/views.py:117 app/views.py:392
 msgid "Product"
 msgstr "Produkt"
 
-#: app/views.py:17
+#: app/views.py:19
 msgid "Date"
 msgstr "Datum"
 
-#: app/views.py:17 app/views.py:122 app/views.py:230
+#: app/views.py:19
 msgid "Price"
 msgstr "Preis"
 
-#: app/views.py:29
-msgid "Price Details"
-msgstr "Preis Informationen"
-
 #: app/views.py:31
+msgid "Price Details"
+msgstr "Preisdetails"
+
+#: app/views.py:33
 msgid "Price Add"
 msgstr "Preis hinzufügen"
 
-#: app/views.py:33
+#: app/views.py:35
 msgid "Price Edit"
 msgstr "Preis bearbeiten"
 
-#: app/views.py:35
+#: app/views.py:37
 msgid "PriceAdmin"
-msgstr "Preis"
+msgstr "Preis Admin"
 
-#: app/views.py:65 app/views.py:94 app/views.py:122 app/views.py:228
+#: app/views.py:53 app/views.py:85 app/views.py:117 app/views.py:391
 msgid "Category"
-msgstr "Kategory"
+msgstr "Kategorie"
 
-#: app/views.py:65
+#: app/views.py:53
 msgid "Product Name"
 msgstr "Produktname"
 
-#: app/views.py:79
+#: app/views.py:67
 msgid "Product Details"
-msgstr "Produkt Informationen"
+msgstr "Produktdetails"
 
-#: app/views.py:81
+#: app/views.py:69
 msgid "Product Add"
 msgstr "Produkt hinzufügen"
 
-#: app/views.py:83
+#: app/views.py:71
 msgid "Product Edit"
 msgstr "Produkt bearbeiten"
 
-#: app/views.py:108
+#: app/views.py:99
 msgid "Category Details"
-msgstr "Kategory Informationen"
+msgstr "Kategoriedetails"
 
-#: app/views.py:110
+#: app/views.py:101
 msgid "Category Add"
-msgstr "Kategory hinzufügen"
+msgstr "Kategorie hinzufügen"
 
-#: app/views.py:112
+#: app/views.py:103
 msgid "Category Edit"
-msgstr "Kategory bearbeiten"
+msgstr "Kategorie bearbeiten"
 
-#: app/views.py:122
+#: app/views.py:117
 msgid "Price per Unit"
 msgstr "Preis pro Einheit"
 
-#: app/views.py:122
-msgid "Number"
-msgstr "Anzahl"
+#: app/views.py:117
+msgid "Units"
+msgstr "Einheiten"
 
-#: app/views.py:122
+#: app/views.py:117
+msgid "Cost"
+msgstr "Kosten"
+
+#: app/views.py:117
 msgid "Comment"
 msgstr "Kommentar"
 
-#: app/views.py:122
+#: app/views.py:117
 msgid "Order"
 msgstr "Bestellung"
 
-#: app/views.py:149
+#: app/views.py:145
 msgid "Orderline Details"
-msgstr "Bestelldetails"
+msgstr "Bestellungsdetails"
 
-#: app/views.py:151
+#: app/views.py:147
 msgid "Orderline Add"
 msgstr "Bestellung hinzufügen"
 
-#: app/views.py:153
+#: app/views.py:149
 msgid "Orderline Edit"
-msgstr "Bestelleung bearbeiten"
+msgstr "Bestellung bearbeiten"
 
-#: app/views.py:165 app/views.py:225
+#: app/views.py:320 app/views.py:386
 msgid "Supplier"
 msgstr "Lieferant"
 
-#: app/views.py:165
+#: app/views.py:320
 msgid "Target date"
 msgstr "Zieldatum"
 
-#: app/views.py:165
+#: app/views.py:320
 msgid "Total number"
-msgstr "Endanzahl"
+msgstr "Gesamtanzahl"
 
-#: app/views.py:165
+#: app/views.py:320
 msgid "Total price"
-msgstr "Endpreis"
+msgstr "Gesamtpreis"
 
-#: app/views.py:177
+#: app/views.py:332
 msgid "Orders Details"
-msgstr "Bestelldetails"
+msgstr "Bestellungsdetails"
 
-#: app/views.py:179
+#: app/views.py:334
 msgid "Orders Add"
 msgstr "Bestellung hinzufügen"
 
-#: app/views.py:181
+#: app/views.py:336
 msgid "Orders Edit"
 msgstr "Bestellung bearbeiten"
 
-#: app/views.py:183
+#: app/views.py:338
 msgid "OrdersAdmin"
 msgstr "Bestellung"
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Client"
-msgstr "Kunde"
+msgstr "Lieferant"
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Email"
 msgstr "Email"
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Adress"
 msgstr "Adresse"
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Telephone"
-msgstr "Telephone"
+msgstr "Telephon"
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Email adress"
 msgstr "Email Adresse"
 
-#: app/views.py:199
+#: app/views.py:356
 msgid "Email Text"
-msgstr "Email Text"
+msgstr "Emailtext"
 
-#: app/views.py:211
+#: app/views.py:368
 msgid "Supplier Details"
 msgstr "Lieferantendetails"
 
-#: app/views.py:213
+#: app/views.py:370
 msgid "Supplier Add"
 msgstr "Lieferant hinzufügen"
 
-#: app/views.py:215
+#: app/views.py:372
 msgid "Supplier Edit"
-msgstr "Lieferanten hinzufügen"
+msgstr "Lieferant bearbeiten"
 
-#: app/views.py:225 app/views.py:226 app/views.py:227
+#: app/views.py:386
 msgid "Orders"
 msgstr "Bestellungen"
 
-#: app/views.py:227
-msgid "Orderline"
-msgstr "Bestellungen"
-
-#: app/views.py:228 app/views.py:229 app/views.py:230
+#: app/views.py:391 app/views.py:392
 msgid "Products"
-msgstr "Produkt"
+msgstr "Produkte"
 
 #: app/templates/404.html:4
 msgid "Page not found"
@@ -200,14 +200,16 @@ msgstr "oder"
 
 #: app/templates/appbuilder/index.html:4
 msgid "Welcome to UniBestAP"
-msgstr "Willkomen zu UniBestAP"
+msgstr "Willkommen zu UniBestAP"
 
 #: app/templates/appbuilder/index.html:7
 msgid ""
 "What is UniBestAP? UniBestAP is a tool where you and your suppliers can "
 "manage your orders. You can create new suppliers, create new orders, "
 "change old orders or execute orders."
-msgstr "Was ist UniBestAP? UniBestAP ist ein Werkzeug mit dem du und deine Leiferanten deine Bestellungen bearbeiten könnt."
+msgstr ""
+"Was ist UniBestAP? UniBestAP ist ein Werkzeug mit dem du und Deine "
+"Lieferanten Bestellungen bearbeiten könnt."
 
 #: app/templates/appbuilder/index.html:8
 msgid "Link to"
@@ -219,98 +221,5 @@ msgstr "Quelle"
 
 #: app/templates/appbuilder/general/confirm.html:6
 msgid "User confirmation needed"
-msgstr "Benutzerbestätigung benötigt"
-
-#~ msgid "Product Name"
-#~ msgstr ""
-
-#~ msgid "Date"
-#~ msgstr ""
-
-#~ msgid "Price"
-#~ msgstr ""
-
-#~ msgid "Category Name"
-#~ msgstr ""
-
-#~ msgid "Price per Unit"
-#~ msgstr ""
-
-#~ msgid "Number"
-#~ msgstr ""
-
-#~ msgid "Comment"
-#~ msgstr ""
-
-#~ msgid "Supplier client"
-#~ msgstr ""
-
-#~ msgid "Target date"
-#~ msgstr ""
-
-#~ msgid "Total number"
-#~ msgstr ""
-
-#~ msgid "Total price"
-#~ msgstr ""
-
-#~ msgid "Client"
-#~ msgstr ""
-
-#~ msgid "Email"
-#~ msgstr ""
-
-#~ msgid "Orders"
-#~ msgstr ""
-
-#~ msgid "Supplier"
-#~ msgstr ""
-
-#~ msgid "Orderline"
-#~ msgstr ""
-
-#~ msgid "Products"
-#~ msgstr ""
-
-#~ msgid "Category"
-#~ msgstr ""
-
-#~ msgid "Product"
-#~ msgstr ""
-
-#~ msgid "Page not found"
-#~ msgstr ""
-
-#~ msgid "Questions? Ask:"
-#~ msgstr ""
-
-#~ msgid "or"
-#~ msgstr ""
-
-#~ msgid "Welcome to UniBestAP"
-#~ msgstr ""
-
-#~ msgid ""
-#~ msgstr ""
-
-#~ msgid "Link to"
-#~ msgstr ""
-
-#~ msgid "source"
-#~ msgstr ""
-
-#~ msgid "User confirmation needed"
-#~ msgstr ""
-
-#~ msgid "Price Details"
-#~ msgstr ""
-
-#~ msgid "Price Add"
-#~ msgstr ""
-
-#~ msgid "Price Edit"
-#~ msgstr ""
-
-#~ msgid "PriceAdmin"
-#~ msgstr ""
+msgstr "Nutzerauthentifizierung"
 

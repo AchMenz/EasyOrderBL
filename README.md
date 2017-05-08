@@ -1,6 +1,6 @@
 # Universal Order Program "EasyOrderBL" with Flask-Appbuilder
-## Installation
-Kommandozeile:
+## installation
+Commandline:
 
     mkdir UniBestFlaskAB
     cd UniBestFlaskAB
@@ -13,7 +13,7 @@ Kommandozeile:
     cd UniversalOrderProgramFlaskAB
     fabmanager create-admin
     
-dort interaktiv:
+interactive:
 
     Username [admin]: admin
     User first name [admin]: Test
@@ -22,16 +22,16 @@ dort interaktiv:
     Password: password
     Repeat for confirmation: password
 
-### Datenbank mit Beispieldaten füllen
-Kommandozeile:
+### populate database with example data
+Commandline:
 
     sqlite3 app.db < app/scratch/SqlInsert.sql
 
-### In "run.py" Host und Port anpassen
+### adjust host and port in "run.py"
     
     app.run(host='127.0.0.1', port=8080, debug=True)
 
-### In "config.py" Daten für Emailversand anpassen
+### adjust data for email in "config.py"
 
     #Email provider details
     MAIL_SERVER = 'smtp.web.de'
@@ -43,6 +43,6 @@ Kommandozeile:
     MAIL_USE_TLS = True
 
 ## Run
-Kommandozeile:
+Commandline:
 
     fabmanager run

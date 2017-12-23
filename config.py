@@ -99,8 +99,6 @@ IMG_UPLOAD_URL = '/static/uploads/'
 #APP_THEME = "yeti.css"
 APP_THEME = "lumen.css"
 
-test
-
 #Email provider details
 MAIL_SERVER = 'smtp.web.de'
 MAIL_PORT = 587

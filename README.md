@@ -11,7 +11,7 @@ Commandline:
     git clone https://github.com/AchimMenzel/EasyOrderBL.git
     
     cd EasyOrderBL
-    mv config.py.initial config.py
+    cp config.py.initial config.py
     fabmanager create-admin
     
 Interactive:

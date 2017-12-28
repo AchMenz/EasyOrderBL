@@ -18,17 +18,18 @@ class PriceAdmin(ModelViewModified):
     # title for the listview
     list_title = _('Prices')
     #columns for label
-    label_columns = {'product.name':_('Product'),'product':_('Product'),'date':_('Date'), 'price':_('Price')}
+#    label_columns = {'product.name':_('Product'),'product':_('Product'),'date':_('Date'), 'price':_('Price')}
+    label_columns = {'product.category.name':'Kategorie', 'product.name':'Produkt','date':'Datum', 'price':'Preis'}
     #columns shown in listview
-    list_columns = ['product.name', 'date', 'price']
+    list_columns = ['product.category.name', 'product.name', 'date', 'price']
     #how the list is ordered
-    order_columns = ['product.name', 'date', 'price']
+    order_columns = ['product.category.name', 'product.name', 'date', 'price']
     #columns in the addform
     add_columns = ['product', 'price', 'date']
     #columns in the editform
     edit_columns = ['product', 'price', 'date']
     #columns in the showform
-    show_columns = ['id', 'product', 'date']
+    show_columns = ['id', 'product.category.name', 'product', 'date']
     #title of showform
     show_title = _('Price Details')
     #title of addform
@@ -37,16 +38,12 @@ class PriceAdmin(ModelViewModified):
     edit_title = _('Price Edit')
     #title of the list
     list_title = _('PriceAdmin')
-    #how many entries are shown on one page
 
     #base order in the beginning
     base_order = ('date', 'desc')
 
+    #how many entries are shown on one page
     page_size = 100
-
-# class PriceNoAdmin(PriceAdmin):
-#     #columns not editable
-#     base_permissions = ['can_list']
 
 class ProductAdmin(ModelViewModified):
     #base table
@@ -54,7 +51,8 @@ class ProductAdmin(ModelViewModified):
     # title for the listview
     list_title = _('Products')
     # columns for label
-    label_columns = {'category.name':_('Category'),'category':_('Category'),'name':_('Product Name')}
+#    label_columns = {'category.name':_('Category'),'category':_('Category'),'name':_('Product Name')}
+    label_columns = {'category.name':'Kategorie','name':'Produktname','price':'letzter Preis'}
     #the related view (subtable that is in relation)
     related_views = [PriceAdmin]
     #columns shown in listview
@@ -76,11 +74,7 @@ class ProductAdmin(ModelViewModified):
 
     page_size = 100
 
-    base_order = ('category.name', 'asc')
-
-# class ProductNoAdmin(ProductAdmin):
-#     #columns not editable
-#     base_permissions = ['can_list']
+    base_order = ('name', 'asc')
 
 class CategoryAdmin(ModelViewModified):
     #base table
@@ -111,10 +105,6 @@ class CategoryAdmin(ModelViewModified):
     page_size = 100
 
     base_order = ('name', 'asc')
-
-# class CategoryNoAdmin(CategoryAdmin):
-#     #columns not editable
-#     base_permissions = ['can_list']
     
 class OrderlineAdmin(ModelViewModified):
     #base table
@@ -158,7 +148,7 @@ class OrderlineAdmin(ModelViewModified):
 
     page_size = 1000
 
-    base_order = ('category.name', 'asc')
+    base_order = ('name', 'asc')
 
     #@action("export_pdf","Export data to PDF", "Do you want to?","fa-rocket", multiple=True, single=False)
     #def export_pdf(self, item):
@@ -247,10 +237,6 @@ class OrderlineAdmin(ModelViewModified):
 
         self.write_sum(numberTotal, priceTotal, item[0].orderId)
         return redirect(request.referrer)
-
-# class OrderlineNoAdmin(OrderlineAdmin):
-#     #columns not editable
-#     base_permissions = ['can_list']
 
 class PrintOrder():
     #delivers all data of one order and a pdf export and mail function
@@ -360,11 +346,7 @@ class OrdersAdmin(ModelViewModified):
     page_size = 100
 
     #base order in the beginning
-    base_order = ('target_date', 'desc')
-
-# class OrdersNoAdmin(OrdersAdmin):
-#     #columns not editable
-#     base_permissions = ['can_list']
+    base_order = ('date', 'desc')
 
 class SupplierAdmin(ModelViewModified):
     #base table
@@ -396,10 +378,6 @@ class SupplierAdmin(ModelViewModified):
 
     base_order = ('client', 'asc')
 
-# class SupplierNoAdmin(SupplierAdmin):
-#     #columns not editable
-#     base_permissions = ['can_list']
-
 
 db.create_all()
 
@@ -407,19 +385,9 @@ db.create_all()
 appbuilder.add_view(SupplierAdmin, 'SupplierAdmin', category = 'Orders',category_label=_('Orders'), label = _('Supplier'))
 appbuilder.add_view_no_menu(OrdersAdmin)
 appbuilder.add_view_no_menu(OrderlineAdmin)
-#appbuilder.add_view(OrdersAdmin, 'OrdersAdmin', category = 'Orders', label = _('Orders'))
-#appbuilder.add_view(OrderlineAdmin, 'OrderlineAdmin', category = 'Orders', label = _('Orderline'))
 appbuilder.add_view(CategoryAdmin, 'CategoryAdmin', category = 'Products',category_label=_('Products'), label = _('Category'))
 appbuilder.add_view(ProductAdmin, 'ProductAdmin', category = 'Products',category_label=_('Products'), label = _('Product'))
 appbuilder.add_view_no_menu(PriceAdmin)
-#appbuilder.add_view(PriceAdmin, 'PriceAdmin', category = 'Products', label = _('Price'))
-
-# appbuilder.add_view(SupplierNoAdmin, "SupplierNoAdmin", category = "Orders")
-# appbuilder.add_view(OrdersNoAdmin, "OrdersNoAdmin", category = "Orders")
-# appbuilder.add_view(OrderlineNoAdmin, "OrderlineNoAdmin", category = "Orders")
-# appbuilder.add_view(CategoryNoAdmin, "CategoryNoAdmin", category = "Products")
-# appbuilder.add_view(ProductNoAdmin, "ProductNoAdmin", category = "Products")
-# appbuilder.add_view(PriceNoAdmin, "PriceNoAdmin", category = "Products")
 
 @appbuilder.app.errorhandler(404)
 def page_not_found(e):
